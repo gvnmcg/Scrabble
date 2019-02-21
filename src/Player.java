@@ -6,5 +6,7 @@ public class Player {
 
     boolean isWord(LinkedList<Letter> word){
 
+        return false;
+
     }
 }

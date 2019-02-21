@@ -22,11 +22,23 @@ public class LetterBag {
 
         while (sc.hasNext()){
 
-            letters.add(new Letter(sc.nextLine()));
         }
+    }
+
+    void createLetters(char c, int score, int dup){
+
+        letters.add(new Letter(c, score));
+
+        if (dup == 0) return;
+        else createLetters( c, score, dup--);
     }
 
     Letter draw(){
 
+        return null;
+    }
+
+    public static void main(String[] args) {
+        new LetterBag();
     }
 }

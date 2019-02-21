@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class Board {
 
-    char[] spaces = new char[];
+    char[] spaces = new char[225];
 
     void placeLetter(Letter l, int x, int y){
 
