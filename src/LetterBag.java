@@ -8,12 +8,17 @@ public class LetterBag {
     LetterBag(){
 
         createAllLetters();
+
+        for (Letter l : letters){
+
+            System.out.printf("%c , %d", l.c, l.score);
+        }
     }
 
     void createAllLetters(){
 
 
-        Scanner sc = new Scanner();
+        Scanner sc = new Scanner("scabble_tiles.txt");
 
         while (sc.hasNext()){
 
