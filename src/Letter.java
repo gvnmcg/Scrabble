@@ -8,8 +8,7 @@ public class Letter {
     int x;
     int y;
 
-    //letter score multiplier
-    int lsm;
+
 
     Letter(char c, int score){
         this.c = c;

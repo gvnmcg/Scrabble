@@ -1,6 +1,6 @@
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -10,7 +10,9 @@ public class Board {
 
     WordSpace[] spaces;
 
-    ArrayList<WordSpace> spaceArrayList;
+    ArrayList<WordSpace> wordSpaceList = new ArrayList<>();
+
+    HashMap<WordSpace, Letter> wordSpaceLetterMap = new HashMap<>();
 
     Board(String filename){
 
@@ -20,6 +22,9 @@ public class Board {
 
     void placeLetter(Letter l, int x, int y){
 
+        WordSpace ws = wordSpaceList.get( (y*sideLength) + x );
+
+        wordSpaceLetterMap.put(ws, l);
     }
 
     boolean placeWord(LinkedList<Letter> word, int x, int y, int dx, int dy){
@@ -37,20 +42,19 @@ public class Board {
 
 
         //scan file
-        //first line, the length of the sides (n) of the cubed board
-        //each line after is n pairs of characters
         try {
 
-            Scanner scanner = new Scanner(new File("src/txt/scrabble_board.txt"));
+            Scanner scanner = new Scanner(new File(filename));
 
+            //first line, the length of the sides (n) of the cubed board
             sideLength = scanner.nextInt();
 
-
+            //each line after is n pairs of characters
             while (scanner.hasNext()) {
 
-                spaceArrayList.add(new WordSpace(scanner.next()));
-                System.out.println(scanner.nextLine() + " wow");
+                wordSpaceList.add(new WordSpace(scanner.next()));
             }
+            System.out.println("The board: " + wordSpaceList);
 
             scanner.close();
 
@@ -64,7 +68,7 @@ public class Board {
     public static void main(String[] args) {
 
         //Make new board and read in text file
-        Board board = new Board();
+        Board board = new Board("src/txt/scrabble_board.txt");
 
         // n rows, n columns, nxn
         // n * 3 characters: [wsm = word_Score_multiplayer, lsm = letter_Score_multiplayer, whitespace]
