@@ -3,8 +3,13 @@ import java.util.Scanner;
 public class Letter {
 
     char c;
-
     int score;
+
+    int x;
+    int y;
+
+    //letter score multiplier
+    int lsm;
 
     Letter(char c, int score){
         this.c = c;
