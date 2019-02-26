@@ -9,6 +9,14 @@ import java.util.HashMap;
 
 public class Display {
 
+
+    final static int WIDTH = 1500;
+    final static int HEIGHT = 700;
+
+
+    int LEFT_MARGIN = 10;
+    int TOP_MARGIN = 20;
+
     BorderPane layout = new BorderPane();
 
     Group center;
@@ -24,12 +32,39 @@ public class Display {
 
     }
 
-    Group makeLetterGroup(Letter l){
+    Group makeWordSpaceGroup(WordSpace ws){
 
         Group g = new Group();
 
         Rectangle r = new Rectangle(scale, scale);
         r.setFill(Color.LIGHTGREEN);
+        r.setStroke(Color.LIGHTGREY);
+        g.getChildren().add(r);
+
+        Text t = null;
+        //score
+
+        if (ws.wsm > 1){
+            t = new Text(String.valueOf(ws.wsm));
+
+        } else if (ws.lsm > 1){
+            t = new Text(String.valueOf(ws.lsm));
+
+        }
+        t.setX(35);
+        t.setY(15);
+        g.getChildren().add(t);
+
+
+        return g;
+    }
+
+    Group makeLetterGroup(Letter l){
+
+        Group g = new Group();
+
+        Rectangle r = new Rectangle(scale, scale);
+        r.setFill(Color.GREEN);
         r.setStroke(Color.BROWN);
         g.getChildren().add(r);
 

@@ -1,44 +1,76 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class LetterBag {
 
     LinkedList<Letter> letters = new LinkedList<>();
 
-    LetterBag(){
+    LetterBag() {
 
-        createAllLetters();
-
-        for (Letter l : letters){
-
-            System.out.printf("%c , %d", l.c, l.score);
-        }
     }
 
-    void createAllLetters(){
+    void createAllLetters() throws FileNotFoundException {
 
 
-        Scanner sc = new Scanner("scabble_tiles.txt");
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new FileReader("src/txt/scrabble_tiles.txt"));
+        } catch (FileNotFoundException e){
 
+            e.printStackTrace();
+        }
+
+        //every line is character, score value, duplicates
         while (sc.hasNext()){
 
+            Character c = sc.next().charAt(0);
+            int points = Integer.parseInt(sc.next());
+            int dup = Integer.parseInt(sc.next());
+
+            createLetter(c, points, dup);
+
         }
     }
 
-    void createLetters(char c, int score, int dup){
+    void createLetter(char c, int score, int dup){
 
         letters.add(new Letter(c, score));
 
-        if (dup == 0) return;
-        else createLetters( c, score, dup--);
+        if (dup == 1) return;
+        else createLetter( c, score, --dup);
     }
 
     Letter draw(){
 
-        return null;
+        Random random = new Random();
+
+        return letters.remove(random.nextInt(letters.size()));
     }
 
-    public static void main(String[] args) {
-        new LetterBag();
+    void printAll(){
+
+        for (Letter l : letters){
+
+            System.out.println(l);
+        }
+    }
+
+    public static void main(String[] args)  throws FileNotFoundException {
+
+        LetterBag lb = new LetterBag();
+        lb.createAllLetters();
+
+        lb.printAll();
+
+        System.out.println(lb.draw());
+        System.out.println(lb.draw());
+        System.out.println(lb.draw());
+        System.out.println(lb.draw());
+
+
     }
 }

@@ -27,4 +27,9 @@ public class Letter {
         sc.close();
 
     }
+
+    @Override
+    public String toString() {
+        return c + ": " + score;
+    }
 }
