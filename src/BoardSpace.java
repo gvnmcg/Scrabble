@@ -1,4 +1,4 @@
-public class WordSpace {
+public class BoardSpace {
 
     String rep;
 
@@ -6,7 +6,7 @@ public class WordSpace {
     int lsm;
     int wsm;
 
-    WordSpace(String rep){
+    BoardSpace(String rep){
         this.rep = rep;
 
         if ( rep.charAt(0) == '.'){

@@ -8,11 +8,23 @@ public class Board {
 
     int sideLength;
 
-    WordSpace[] spaces;
+    BoardSpace[] spaces;
 
-    ArrayList<WordSpace> wordSpaceList = new ArrayList<>();
+    ArrayList<BoardSpace> boardSpaceList = new ArrayList<>();
 
-    HashMap<WordSpace, Letter> wordSpaceLetterMap = new HashMap<>();
+    HashMap<BoardSpace, Letter> wordSpaceLetterMap = new HashMap<>();
+
+    Dictionary dictionary = new Dictionary();
+
+    Display display;
+
+    BoardDisplay boardDisplay;
+
+    Board(Display display){
+        this.display = display;
+
+        boardDisplay = display.makeBoardDisplay();
+    }
 
     Board(String filename){
 
@@ -22,7 +34,7 @@ public class Board {
 
     void placeLetter(Letter l, int x, int y){
 
-        WordSpace ws = wordSpaceList.get( (y*sideLength) + x );
+        BoardSpace ws = boardSpaceList.get( (y*sideLength) + x );
 
         wordSpaceLetterMap.put(ws, l);
     }
@@ -52,9 +64,9 @@ public class Board {
             //each line after is n pairs of characters
             while (scanner.hasNext()) {
 
-                wordSpaceList.add(new WordSpace(scanner.next()));
+                boardSpaceList.add(new BoardSpace(scanner.next()));
             }
-            System.out.println("The board: " + wordSpaceList);
+            System.out.println("The board: " + boardSpaceList);
 
             scanner.close();
 

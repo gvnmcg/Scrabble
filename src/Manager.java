@@ -1,6 +1,8 @@
 public class Manager {
 
 
+
+
     LetterBag bag = new LetterBag();
 
     Board board;
@@ -11,9 +13,9 @@ public class Manager {
 
     Player p2;
 
-    Manager(){
+    Manager(Display display){
 
 
-
+        board = new Board(display);
     }
 }
