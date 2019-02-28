@@ -40,6 +40,7 @@ public class Display {
     Display(Manager manager){
 
 
+        BoardDisplay boardDisplay = new BoardDisplay(manager.getBoard());
     }
 
     void addLetterToBoard(Letter l, int x, int y){
@@ -64,7 +65,7 @@ public class Display {
 
     public BoardDisplay makeBoardDisplay() {
 
-        BoardDisplay boardDisplay = new BoardDisplay();
+        BoardDisplay boardDisplay = new BoardDisplay(null);
         return  boardDisplay;
     }
 }

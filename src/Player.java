@@ -5,7 +5,7 @@ public class Player {
     LinkedList<Letter> hand = new LinkedList<>();
 
 
-    Player(Board board){
+    Player(Board board, LetterBag bag){
 
     }
 

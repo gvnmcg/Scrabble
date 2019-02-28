@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Board {
 
-    static int sideLength;
+    int sideLength;
 
     BoardSpace[][] spaces;
 

@@ -4,7 +4,7 @@
 public class Manager {
 
 
-    LetterBag bag = new LetterBag();
+    LetterBag bag;
 
     Board board;
 
@@ -13,9 +13,20 @@ public class Manager {
     ComputerPlayer p2;
 
     Manager() {
+        bag = new LetterBag();
         board = new Board();
 
+        p1 = new Player(board, bag);
 
+        p2 = new ComputerPlayer(board, bag);
+    }
+
+    BoardSpace getSpace(int x, int y){
+        return board.getBoardSpace(x, y);
+    }
+
+    Board getBoard(){
+        return board;
     }
 
 
