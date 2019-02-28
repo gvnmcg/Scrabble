@@ -1,10 +1,12 @@
 public class BoardSpace {
 
-    String rep;
+    Letter letter;
 
     //letter score multiplier
     int lsm;
     int wsm;
+
+    String rep;
 
     BoardSpace(String rep){
         this.rep = rep;
@@ -20,6 +22,10 @@ public class BoardSpace {
         } else {
             wsm = Integer.parseInt(Character.toString(rep.charAt(1)));
         }
+    }
+
+    boolean hasLetter(){
+        return letter != null;
     }
 
     @Override

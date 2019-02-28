@@ -32,6 +32,13 @@ public class Board {
 
     }
 
+    Board(){
+
+        readIn("src/txt/scrabble_board.txt");
+
+    }
+
+
     void placeLetter(Letter l, int x, int y){
 
         BoardSpace ws = boardSpaceList.get( (y*sideLength) + x );
@@ -45,9 +52,7 @@ public class Board {
     }
 
     boolean isAvailable(int x, int y){
-
-
-        return true;
+        return spaces[x][y].hasLetter();
     }
 
     BoardSpace getBoardSpace(int x, int y){
@@ -56,35 +61,58 @@ public class Board {
 
     void readIn(String filename){
 
-
         //scan file
+        Scanner fileSc = null;
+        Scanner lineSc;
+
+        int row = 0;
+        int col = 0;
+
         try {
 
-            Scanner scanner = new Scanner(new File(filename));
+            fileSc = new Scanner(new File(filename));
 
             //first line, the length of the sides (n) of the cubed board
-            sideLength = scanner.nextInt();
+            sideLength = Integer.parseInt(fileSc.nextLine());
+
+            spaces = new BoardSpace[sideLength][sideLength];
 
             //each line after is n pairs of characters
-            while (scanner.hasNext()) {
+            while (fileSc.hasNext()) {
 
-                boardSpaceList.add(new BoardSpace(scanner.next()));
+                lineSc = new Scanner(fileSc.nextLine());
+
+                while (lineSc.hasNext()){
+                    spaces[row][col] = new BoardSpace(lineSc.next());
+                    col++;
+                }
+                col = 0;
+                row++;
             }
-            System.out.println("The board: " + boardSpaceList);
-
-            scanner.close();
 
         }catch (Exception x){
-
             x.printStackTrace();
+        } finally {
+            fileSc.close();
         }
 
+        printBoard();
+    }
+
+    void printBoard(){
+
+        for (BoardSpace[] row : spaces){
+            for (BoardSpace bs : row){
+                System.out.print(bs + " ");
+            }
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
 
         //Make new board and read in text file
-        Board board = new Board("src/txt/scrabble_board.txt");
+        Board board = new Board();
 
         // n rows, n columns, nxn
         // n * 3 characters: [wsm = word_Score_multiplayer, lsm = letter_Score_multiplayer, whitespace]

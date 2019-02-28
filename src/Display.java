@@ -50,7 +50,6 @@ public class Display {
 
     void makeBoard(){
 
-        center
     }
 
     void placeLetter(Letter l, int n){
