@@ -5,13 +5,9 @@ import java.util.Timer;
 
 public class Dictionary {
 
-    Dictionary(String filename) throws FileNotFoundException {
+    Dictionary() {
 
-        try {
-            readIn(filename);
-        } catch (FileNotFoundException fx){
-            fx.fillInStackTrace();
-        }
+
     }
 
     Trie trie = new Trie();
@@ -46,7 +42,12 @@ public class Dictionary {
 
         //create Dictionary and read in the textfile
 
-        Dictionary dictionary = new Dictionary(args[0]);
+        Dictionary dictionary = new Dictionary();
+        try {
+            dictionary.readIn(args[0]);
+        } catch (FileNotFoundException fx){
+            fx.fillInStackTrace();
+        }
 
         // test if the text file is stored and retrievable
         //names are not retrivable

@@ -4,6 +4,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Load Scrabble, Game Data, Display Components, and Launch Window
+ */
 public class Main extends Application {
 
     @Override

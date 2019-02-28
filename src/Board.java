@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Board {
 
-    int sideLength;
+    static int sideLength;
 
-    BoardSpace[] spaces;
+    BoardSpace[][] spaces;
 
     ArrayList<BoardSpace> boardSpaceList = new ArrayList<>();
 
@@ -48,6 +48,10 @@ public class Board {
 
 
         return true;
+    }
+
+    BoardSpace getBoardSpace(int x, int y){
+        return spaces[x][y];
     }
 
     void readIn(String filename){

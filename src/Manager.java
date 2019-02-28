@@ -1,21 +1,25 @@
+/**
+ * Load LetterBag, Board, Players, Trays, and
+ */
 public class Manager {
-
-
 
 
     LetterBag bag = new LetterBag();
 
     Board board;
 
-    Dictionary dictionary;
-
     Player p1;
 
-    Player p2;
+    ComputerPlayer p2;
+
+
 
     Manager(Display display){
 
 
         board = new Board(display);
     }
+
+
+
 }

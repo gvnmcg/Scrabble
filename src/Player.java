@@ -9,9 +9,8 @@ public class Player {
 
     }
 
-    boolean isWord(LinkedList<Letter> word){
+    boolean placeWord(LinkedList<Letter> word, int x, int y){
 
-        return false;
-
+        return true;
     }
 }

@@ -1,5 +1,7 @@
 import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -21,6 +23,8 @@ public class Display {
 
     Group center;
 
+    VBox boardVBox;
+
     int scale = 50;
 
     HashMap<Integer, Group> letterGroupMap = new HashMap<>();
@@ -32,6 +36,21 @@ public class Display {
         center = new Group();
         layout.setCenter(center);
 
+
+
+
+
+
+    }
+
+    void addLetterToBoard(Letter l, int x, int y){
+
+    }
+
+
+    void makeBoard(){
+
+        center
     }
 
     void placeLetter(Letter l, int n){
@@ -47,6 +66,7 @@ public class Display {
 
     public BoardDisplay makeBoardDisplay() {
 
-        BoardDisplay boardDisplay = new
+        BoardDisplay boardDisplay = new BoardDisplay();
+        return  boardDisplay;
     }
 }
