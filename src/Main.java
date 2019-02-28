@@ -13,9 +13,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
 
-        Display display = new Display();
+//        Display display = new Display();
+//        Manager manager = new Manager(display);
 
-        Manager manager = new Manager(display);
+        Manager manager = new Manager();
+        Display display = new Display(manager);
 
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(display.layout, 300, 275));

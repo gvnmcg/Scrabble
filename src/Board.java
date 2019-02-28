@@ -59,29 +59,41 @@ public class Board {
         return spaces[x][y];
     }
 
+    /**
+     * Scan file and load board data into data structure
+     *
+     * save board size
+     * n rows, n columns, nxn
+     *
+     * each piece of board data is n * 3 characters:
+     * [wsm = word_Score_multiplayer, lsm = letter_Score_multiplayer, whitespace]
+     *
+     * @param filename
+     */
     void readIn(String filename){
 
-        //scan file
+        //using two scanners
+        //one to grab lines
         Scanner fileSc = null;
+        //one to grab chunks from the line
         Scanner lineSc;
 
+        //keep track of board location
         int row = 0;
         int col = 0;
 
         try {
-
             fileSc = new Scanner(new File(filename));
 
             //first line, the length of the sides (n) of the cubed board
             sideLength = Integer.parseInt(fileSc.nextLine());
-
+            //use n to init data structure
             spaces = new BoardSpace[sideLength][sideLength];
 
-            //each line after is n pairs of characters
+            //read into data structure
             while (fileSc.hasNext()) {
 
                 lineSc = new Scanner(fileSc.nextLine());
-
                 while (lineSc.hasNext()){
                     spaces[row][col] = new BoardSpace(lineSc.next());
                     col++;
@@ -96,7 +108,6 @@ public class Board {
             fileSc.close();
         }
 
-        printBoard();
     }
 
     void printBoard(){
@@ -113,14 +124,10 @@ public class Board {
 
         //Make new board and read in text file
         Board board = new Board();
+        board.printBoard();
 
         // n rows, n columns, nxn
         // n * 3 characters: [wsm = word_Score_multiplayer, lsm = letter_Score_multiplayer, whitespace]
-
-//        File f = new File("src/txt/scrabble_board.txt");
-
-
-
     }
 
 }

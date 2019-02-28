@@ -12,14 +12,15 @@ public class Manager {
 
     ComputerPlayer p2;
 
+    Manager() {
+        board = new Board();
 
 
-    Manager(Display display){
-
-
-        board = new Board(display);
     }
 
 
+    Manager(Display display) {
+        board = new Board(display);
 
+    }
 }

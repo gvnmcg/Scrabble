@@ -35,10 +35,9 @@ public class Display {
 
         center = new Group();
         layout.setCenter(center);
+    }
 
-
-
-
+    Display(Manager manager){
 
 
     }

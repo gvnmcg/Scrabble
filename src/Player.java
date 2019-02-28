@@ -9,6 +9,12 @@ public class Player {
 
     }
 
+
+    boolean placeLetter(Letter l, int x, int y){
+
+        return true;
+    }
+
     boolean placeWord(LinkedList<Letter> word, int x, int y){
 
         return true;

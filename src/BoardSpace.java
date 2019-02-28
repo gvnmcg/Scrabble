@@ -30,6 +30,11 @@ public class BoardSpace {
 
     @Override
     public String toString() {
-        return "" + lsm + "/" + wsm;
+
+        if (hasLetter()){
+            return " " + letter.c;
+        }
+
+        return "" + (lsm==1 ? "." : lsm) + ""  + "" + (wsm==1 ? "." : wsm);
     }
 }
