@@ -18,7 +18,12 @@ public class Manager {
 
         p1 = new Player(board, bag);
 
+        System.out.println("p1 tray: " + p1.tray.toString());
+
         p2 = new ComputerPlayer(board, bag);
+
+        System.out.println("p1 tray: " + p2.tray.toString());
+
     }
 
     BoardSpace getSpace(int x, int y){
@@ -29,9 +34,8 @@ public class Manager {
         return board;
     }
 
-
-    Manager(Display display) {
-        board = new Board(display);
+    public static void main(String[] args) {
+        Manager manager = new Manager();
 
     }
 }

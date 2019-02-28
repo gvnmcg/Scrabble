@@ -2,11 +2,12 @@ import java.util.LinkedList;
 
 public class Player {
 
-    LinkedList<Letter> hand = new LinkedList<>();
 
+    Tray tray;
 
     Player(Board board, LetterBag bag){
 
+        tray = new Tray(bag);
     }
 
 
