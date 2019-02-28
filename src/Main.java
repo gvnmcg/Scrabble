@@ -12,12 +12,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+
         Display display = new Display();
 
-
-        display.placeLetter(new Letter('c', 3), 4);
-        display.placeLetter(new Letter('d', 3), 5);
-
+        Manager manager = new Manager(display);
 
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(display.layout, 300, 275));
