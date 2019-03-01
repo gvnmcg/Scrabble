@@ -1,8 +1,13 @@
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+
 import java.util.LinkedList;
 
 public class Tray {
 
     LinkedList<Letter> letters;
+
+    Letter selected = null;
 
     public Tray(LetterBag bag) {
 
@@ -12,6 +17,25 @@ public class Tray {
 
             letters.add(bag.draw());
         }
+    }
+
+    void selectLetter(Letter letter){
+        if (selected != null){
+            letters.add(selected);
+        } else {
+            selected = letter;
+            letters.remove(letter);
+        }
+    }
+
+    EventHandler<MouseEvent> handleLetterSelection(Letter letter){
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                selected = letter;
+
+            }
+        };
     }
 
     @Override

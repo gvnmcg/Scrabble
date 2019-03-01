@@ -41,12 +41,14 @@ public class Display {
 
 
         BoardDisplay boardDisplay = new BoardDisplay(manager.getBoard());
+
+        TrayDisplay p1TrayDisplay = new TrayDisplay(manager.p1.tray);
+        TrayDisplay p2TrayDisplay = new TrayDisplay(manager.p2.tray);
     }
 
     void addLetterToBoard(Letter l, int x, int y){
 
     }
-
 
     void makeBoard(){
 

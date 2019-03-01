@@ -9,17 +9,21 @@ public class LetterBag {
 
     LinkedList<Letter> letters = new LinkedList<>();
 
+    LetterBag() {
+        createAllLetters();
+    }
+
     /**
      * fill data structure letters with new objects specified
      * by the text file
      * @throws FileNotFoundException
      */
-    void createAllLetters() throws FileNotFoundException {
+    void createAllLetters()  {
 
         //scan letters, points and distribution form a text file
         Scanner sc = null;
         try {
-            sc = new Scanner(new FileReader("src/txt/scrabble_tiles.txt"));
+            sc = new Scanner(new File("src/txt/scrabble_tiles.txt"));
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
@@ -54,7 +58,7 @@ public class LetterBag {
     }
 
     /**
-     * @return a random letter form bag
+     * @return a random letter from bag
      */
     Letter draw(){
 

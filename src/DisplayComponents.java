@@ -6,14 +6,14 @@ import javafx.scene.text.Text;
 
 public class DisplayComponents {
 
-    int scale;
+    static int scale;
 
     DisplayComponents(int scale){
         this.scale = scale;
     }
 
 
-    Group makeWordSpaceGroup(BoardSpace ws){
+    static Group makeWordSpaceGroup(BoardSpace ws){
 
         Group g = new Group();
 
@@ -40,7 +40,7 @@ public class DisplayComponents {
         return g;
     }
 
-    Group makeLetterGroup(Letter l){
+    static Group makeLetterGroup(Letter l){
 
         Group g = new Group();
 

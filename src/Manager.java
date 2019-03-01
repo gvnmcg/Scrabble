@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 /**
  * Load LetterBag, Board, Players, Trays, and
  */
@@ -15,14 +17,11 @@ public class Manager {
     Manager() {
         bag = new LetterBag();
         board = new Board();
+        board.printBoard();
 
         p1 = new Player(board, bag);
 
-        System.out.println("p1 tray: " + p1.tray.toString());
-
         p2 = new ComputerPlayer(board, bag);
-
-        System.out.println("p1 tray: " + p2.tray.toString());
 
     }
 
@@ -34,7 +33,7 @@ public class Manager {
         return board;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
         Manager manager = new Manager();
 
     }

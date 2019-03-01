@@ -20,6 +20,12 @@ public class Board {
 
     BoardDisplay boardDisplay;
 
+    Board(){
+
+        readIn("src/txt/scrabble_board.txt");
+
+    }
+
     Board(Display display){
         this.display = display;
 
@@ -32,11 +38,7 @@ public class Board {
 
     }
 
-    Board(){
 
-        readIn("src/txt/scrabble_board.txt");
-
-    }
 
 
     void placeLetter(Letter l, int x, int y){

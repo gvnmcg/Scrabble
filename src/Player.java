@@ -1,3 +1,6 @@
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+
 import java.util.LinkedList;
 
 public class Player {
@@ -19,5 +22,13 @@ public class Player {
     boolean placeWord(LinkedList<Letter> word, int x, int y){
 
         return true;
+    }
+
+    EventHandler<MouseEvent> getLetterSelectHandler(){
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+            }
+        };
     }
 }
