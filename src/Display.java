@@ -1,4 +1,5 @@
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,11 +37,7 @@ public class Display {
         center = new Group();
         layout.setCenter(center);
 
-        Rectangle r = new Rectangle(10, 10, 20 , 20);
 
-        r.setFill(Color.RED);
-
-        center.getChildren().add(r);
     }
 
     Display(Manager manager, Contoller contoller){
@@ -51,6 +48,13 @@ public class Display {
 
         TrayDisplay p1TrayDisplay = new TrayDisplay(manager.p1.tray, contoller);
         TrayDisplay p2TrayDisplay = new TrayDisplay(manager.p2.tray, contoller);
+
+
+//        Rectangle r = new Rectangle(10, 10, 20 , 20);
+//        r.setFill(Color.RED);
+//        r.addEventHandler(MouseEvent.MOUSE_CLICKED, contoller.handleRedSquare(r));
+
+        center.getChildren().add(p1TrayDisplay.hBox);
     }
 
     void addLetterToBoard(Letter l, int x, int y){

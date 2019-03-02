@@ -1,14 +1,15 @@
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 
 public class TrayDisplay {
 
-    VBox vBox = new VBox();
+    HBox hBox = new HBox();
 
-    Rectangle divider = new Rectangle(10, 10);
+//    Rectangle divider = new Rectangle(10, 10);
+    Group divider = new Group();
 
     Tray tray;
 
@@ -24,10 +25,10 @@ public class TrayDisplay {
             g.addEventHandler(MouseEvent.MOUSE_CLICKED, contoller.handleLetterSelection(l));
             g.addEventHandler(MouseEvent.MOUSE_CLICKED, handleLetterSelection(l, g));
 
-            vBox.getChildren().add(g);
+            hBox.getChildren().add(g);
         }
 
-        vBox.getChildren().add(divider);
+        hBox.getChildren().add(divider);
 
         //add selected letter space;
     }
@@ -37,11 +38,11 @@ public class TrayDisplay {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                tray.selectLetter(l);
+                hBox.getChildren().remove(divider);
+                hBox.getChildren().add(divider);
+                hBox.getChildren().remove(g);
+                hBox.getChildren().add(g);
 
-                vBox.getChildren().remove(divider);
-                vBox.getChildren().add(divider);
-                vBox.getChildren().remove(g);
             }
         };
     }

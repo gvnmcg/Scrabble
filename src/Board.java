@@ -26,21 +26,6 @@ public class Board {
 
     }
 
-    Board(Display display){
-        this.display = display;
-
-        boardDisplay = display.makeBoardDisplay();
-    }
-
-    Board(String filename){
-
-        readIn(filename);
-
-    }
-
-
-
-
     void placeLetter(Letter l, int x, int y){
 
         BoardSpace ws = boardSpaceList.get( (y*sideLength) + x );

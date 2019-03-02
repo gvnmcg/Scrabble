@@ -25,6 +25,8 @@ public class Manager {
 
         p2 = new ComputerPlayer(board, bag);
 
+        currentPlayer = p1;
+
     }
 
     BoardSpace getSpace(int x, int y){
@@ -34,6 +36,9 @@ public class Manager {
     Board getBoard(){
         return board;
     }
+
+
+
 
 
 
