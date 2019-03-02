@@ -45,6 +45,8 @@ public class Board {
 
         BoardSpace ws = boardSpaceList.get( (y*sideLength) + x );
 
+        ws.setLetter(l);
+
         wordSpaceLetterMap.put(ws, l);
     }
 

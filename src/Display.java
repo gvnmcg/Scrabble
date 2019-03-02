@@ -35,15 +35,22 @@ public class Display {
 
         center = new Group();
         layout.setCenter(center);
+
+        Rectangle r = new Rectangle(10, 10, 20 , 20);
+
+        r.setFill(Color.RED);
+
+        center.getChildren().add(r);
     }
 
-    Display(Manager manager){
+    Display(Manager manager, Contoller contoller){
+        this();
 
 
         BoardDisplay boardDisplay = new BoardDisplay(manager.getBoard());
 
-        TrayDisplay p1TrayDisplay = new TrayDisplay(manager.p1.tray);
-        TrayDisplay p2TrayDisplay = new TrayDisplay(manager.p2.tray);
+        TrayDisplay p1TrayDisplay = new TrayDisplay(manager.p1.tray, contoller);
+        TrayDisplay p2TrayDisplay = new TrayDisplay(manager.p2.tray, contoller);
     }
 
     void addLetterToBoard(Letter l, int x, int y){

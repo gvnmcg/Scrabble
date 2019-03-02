@@ -37,4 +37,8 @@ public class BoardSpace {
 
         return "" + (lsm==1 ? "." : lsm) + ""  + "" + (wsm==1 ? "." : wsm);
     }
+
+    public void setLetter(Letter l) {
+        letter = l;
+    }
 }

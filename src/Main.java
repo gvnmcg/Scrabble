@@ -17,10 +17,11 @@ public class Main extends Application {
 //        Manager manager = new Manager(display);
 
         Manager manager = new Manager();
-        Display display = new Display(manager);
+        Contoller contoller = new Contoller(manager);
+        Display display = new Display(manager, contoller);
 
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(display.layout, 300, 275));
+        primaryStage.setTitle("Scrabble");
+        primaryStage.setScene(new Scene(display.layout, display.WIDTH, Display.HEIGHT));
         primaryStage.show();
     }
 

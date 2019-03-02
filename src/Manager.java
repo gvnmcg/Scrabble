@@ -10,6 +10,8 @@ public class Manager {
 
     Board board;
 
+    public Player currentPlayer;
+
     Player p1;
 
     ComputerPlayer p2;
@@ -33,8 +35,25 @@ public class Manager {
         return board;
     }
 
+
+
     public static void main(String[] args) throws FileNotFoundException{
         Manager manager = new Manager();
 
+    }
+
+
+    public void selectLetter(Letter l) {
+
+        currentPlayer.tray.selectLetter(l);
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void placeLetter(Letter l, int r, int c) {
+
+        board.placeLetter(l,r,c);
     }
 }

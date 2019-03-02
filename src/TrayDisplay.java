@@ -12,13 +12,17 @@ public class TrayDisplay {
 
     Tray tray;
 
-    TrayDisplay(Tray tray){
+    Contoller contoller;
+
+    TrayDisplay(Tray tray, Contoller contoller){
         this.tray = tray;
+        this.contoller= contoller;
         Group g;
         for (Letter l : tray.letters){
 
             g = DisplayComponents.makeLetterGroup(l);
-            g.addEventHandler(MouseEvent.MOUSE_CLICKED, handleLetterSelection(l));
+            g.addEventHandler(MouseEvent.MOUSE_CLICKED, contoller.handleLetterSelection(l));
+            g.addEventHandler(MouseEvent.MOUSE_CLICKED, handleLetterSelection(l, g));
 
             vBox.getChildren().add(g);
         }
@@ -28,10 +32,6 @@ public class TrayDisplay {
         //add selected letter space;
     }
 
-    void setEventHandlers(){
-        for (int i = 0; i < vBox.getChildren().size(); i++) {
-        }
-    }
 
     private EventHandler<MouseEvent> handleLetterSelection(Letter l, Group g) {
         return new EventHandler<MouseEvent>() {
