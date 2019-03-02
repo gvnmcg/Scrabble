@@ -6,19 +6,19 @@ import javafx.scene.text.Text;
 
 public class DisplayComponents {
 
-    static int scale;
+    static double scale;
 
-    DisplayComponents(int scale){
+    DisplayComponents(double scale){
         this.scale = scale;
     }
 
 
-    static Group makeWordSpaceGroup(BoardSpace ws){
+    static Group makeBoardSpaceGroup(BoardSpace ws){
 
         Group g = new Group();
 
         Rectangle r = new Rectangle(scale, scale);
-        r.setFill(Color.LIGHTGREEN);
+        r.setFill(Color.LIGHTGREY);
         r.setStroke(Color.LIGHTGREY);
         g.getChildren().add(r);
 
@@ -27,13 +27,17 @@ public class DisplayComponents {
 
         if (ws.wsm > 1){
             t = new Text(String.valueOf(ws.wsm));
+            r.setFill(Color.LIGHTSALMON);
 
         } else if (ws.lsm > 1){
             t = new Text(String.valueOf(ws.lsm));
+            r.setFill(Color.LIGHTBLUE);
 
+        } else {
+            t = new Text(".");
         }
-        t.setX(35);
-        t.setY(15);
+        t.setX(scale * (.25));
+        t.setY(scale * (.85));
         g.getChildren().add(t);
 
 
@@ -53,14 +57,14 @@ public class DisplayComponents {
         Text t;
         t = new Text(String.valueOf(l.c));
         t.setFont(Font.font(25));
-        t.setX(scale * (double)(1/2));
-        t.setY(scale * (double)(5/4));
+        t.setX(scale * (.25));
+        t.setY(scale * (.85));
         g.getChildren().add(t);
 
         //score
         t = new Text(String.valueOf(l.score));
-        t.setX(35);
-        t.setY(15);
+        t.setX(scale * (.75));
+        t.setY(scale * (.35));
         g.getChildren().add(t);
 
         return g;

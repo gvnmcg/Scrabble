@@ -1,6 +1,9 @@
 import javafx.scene.Group;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import sample.Controller;
+
+import java.util.ArrayList;
 
 public class BoardDisplay {
 
@@ -9,40 +12,41 @@ public class BoardDisplay {
 
     Group group = new Group();
 
-    BoardDisplay(Board board){
+    VBox boardVBox;
 
-        displayEachSpace(board);
+    ArrayList<HBox> hBoxes;
+
+    BoardDisplay(Board board, Contoller contoller){
+
+        initBoardSpaces(board);
     }
 
-    void displayEachSpace(Board board){
+    void addHandlers(BoardSpace bs, Controller controller){
 
-        for (int i = 0; i < board.sideLength; i++) {
-            for (int j = 0; j < board.sideLength; j++) {
-                displaySpace(board.spaces[i][j], i ,j);
-            }
+        for (HBox hBox : hBoxes){
+
+
         }
     }
 
-    void displaySpace(BoardSpace bs, int x, int y){
 
-        BoardSpaceDisplay bsd = new BoardSpaceDisplay(bs, x, y);
-        group.getChildren().add(bsd.rep);
-    }
+    VBox initBoardSpaces(Board board){
 
-
-    VBox initBoardSpaces(Board board, DisplayComponents components){
-
-        VBox boardVBox = new VBox();
+        boardVBox = new VBox();
         HBox rowHBow;
+        hBoxes = new ArrayList<>();
+
+        Group g;
 
         for (int i = 0; i < 15; i++) {
 
             boardVBox.getChildren().add(rowHBow = new HBox());
+            hBoxes.add(rowHBow);
 
             for (int j = 0; j < 15; j++) {
 
                 rowHBow.getChildren().add(
-                        components.makeWordSpaceGroup(
+                        g = DisplayComponents.makeBoardSpaceGroup(
                                 board.getBoardSpace(i,j)));
             }
         }

@@ -23,12 +23,12 @@ public class Contoller {
         };
     }
 
-    public EventHandler<MouseEvent> handleRedSquare(Rectangle r) {
+    public EventHandler<MouseEvent> handleSpaceClick(BoardSpace bs) {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                r.setFill(Color.BLUE);
-                System.out.println("wow");
+
+                System.out.println("bs: " + bs);
             }
         };
     }
