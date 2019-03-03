@@ -9,7 +9,11 @@ public class Tray {
 
     Letter selected = null;
 
-    public Tray(LetterBag bag) {
+    TrayDisplay trayDisplay;
+
+    public Tray(LetterBag bag, TrayDisplay trayDisplay) {
+
+        this.trayDisplay = trayDisplay;
 
         letters= new LinkedList<>();
 
@@ -17,6 +21,8 @@ public class Tray {
 
             letters.add(bag.draw());
         }
+
+
     }
 
     void selectLetter(Letter letter){

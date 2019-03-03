@@ -4,16 +4,18 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class TrayDisplay {
+import java.util.LinkedList;
+
+public class PlayerDisplay {
 
     HBox hBox ;
 
-//    Rectangle divider = new Rectangle(10, 10);
+    //    Rectangle divider = new Rectangle(10, 10);
     Group divider = new Group();
 
     Controller controller;
 
-    TrayDisplay(Player player, Controller controller){
+    PlayerDisplay(Player player, Controller controller){
         this.controller = controller;
 
         hBox = new HBox();
@@ -22,10 +24,20 @@ public class TrayDisplay {
 
         addHandlers(player.getTray());
 
-        //add selected letter space;
+        //init
+        update(player.getTrayList());
     }
 
-    void addHandlers(Tray tray){
+    private void update(LinkedList<Letter> letters){
+
+        for (Letter l : letters){
+            hBox.getChildren().add(DisplayComponents.makeLetterGroup(l));
+        }
+
+    }
+
+
+    private void addHandlers(Tray tray){
         Group g;
         for (Letter l : tray.letters){
 
@@ -51,4 +63,7 @@ public class TrayDisplay {
         };
     }
 
+    public HBox getRoot() {
+        return hBox;
+    }
 }

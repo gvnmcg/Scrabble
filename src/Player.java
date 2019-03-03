@@ -5,12 +5,21 @@ import java.util.LinkedList;
 
 public class Player {
 
+    private Tray tray;
 
-    Tray tray;
+    LinkedList<Letter> trayList = new LinkedList<>();
+
+    //display components
+
+    PlayerDisplay playerDisplay;
 
     Player(Board board, LetterBag bag){
 
         tray = new Tray(bag);
+    }
+
+    Letter getSelectedLetter(){
+        return tray.selected;
     }
 
 
@@ -24,11 +33,16 @@ public class Player {
         return true;
     }
 
-    EventHandler<MouseEvent> getLetterSelectHandler(){
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-            }
-        };
+    public void setPlayerDisplay(PlayerDisplay playerDisplay) {
+        this.playerDisplay = playerDisplay;
     }
+
+    public Tray getTray() {
+        return tray;
+    }
+
+    public LinkedList<Letter> getTrayList() {
+        return trayList;
+    }
+
 }

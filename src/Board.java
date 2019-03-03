@@ -1,22 +1,22 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Board {
 
     int sideLength;
 
-    BoardSpace[][] spaces;
+    private BoardSpace[][] spaces;
 
-    ArrayList<BoardSpace> boardSpaceList = new ArrayList<>();
+    private ArrayList<BoardSpace> boardSpaceList = new ArrayList<>();
 
-    HashMap<BoardSpace, Letter> wordSpaceLetterMap = new HashMap<>();
+    private HashMap<BoardSpace, Letter> wordSpaceLetterMap = new HashMap<>();
 
-    Dictionary dictionary = new Dictionary();
+    private Dictionary dictionary = new Dictionary();
 
-    Display display;
+
+    //Display
 
     BoardDisplay boardDisplay;
 
@@ -27,17 +27,9 @@ public class Board {
     }
 
     void placeLetter(Letter l, int x, int y){
-
-        BoardSpace ws = boardSpaceList.get( (y*sideLength) + x );
-
+        BoardSpace ws = boardSpaceList.get( ( y * sideLength ) + x );
         ws.setLetter(l);
-
         wordSpaceLetterMap.put(ws, l);
-    }
-
-    boolean placeWord(LinkedList<Letter> word, int x, int y, int dx, int dy){
-
-        return false;
     }
 
     boolean isAvailable(int x, int y){
@@ -109,14 +101,36 @@ public class Board {
         }
     }
 
+
+
+    public void setBoardDisplay(BoardDisplay boardDisplay) {
+        this.boardDisplay = boardDisplay;
+    }
+
     public static void main(String[] args) {
 
         //Make new board and read in text file
         Board board = new Board();
         board.printBoard();
-
-        // n rows, n columns, nxn
-        // n * 3 characters: [wsm = word_Score_multiplayer, lsm = letter_Score_multiplayer, whitespace]
     }
 
+
+    public void setDisplay(BoardDisplay boardDisplay, Controller controller) {
+
+        this.boardDisplay = boardDisplay;
+    }
+
+    @Override
+    public String toString() {
+
+        String rep = "";
+        for (BoardSpace[] row : spaces){
+            for (BoardSpace bs : row){
+                rep += bs.toString() + " ";
+            }
+            rep += "\n";
+        }
+
+        return rep;
+    }
 }

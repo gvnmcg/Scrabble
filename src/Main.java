@@ -9,19 +9,22 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    Stage winow;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        winow = primaryStage;
 
-//        Display display = new Display();
-//        Manager manager = new Manager(display);
+//        Manager manager = new Manager();
+//        Controller controller = new Controller(manager);
+//        Display display = new Display(manager, controller);
 
+        Display display = new Display();
         Manager manager = new Manager();
-        Contoller contoller = new Contoller(manager);
-        Display display = new Display(manager, contoller);
 
         primaryStage.setTitle("Scrabble");
-        primaryStage.setScene(new Scene(display.layout, display.WIDTH, Display.HEIGHT));
+        primaryStage.setScene(new Scene(display.layout, Display.WIDTH, Display.HEIGHT));
         primaryStage.show();
     }
 
