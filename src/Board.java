@@ -91,28 +91,11 @@ public class Board {
 
     }
 
-    void printBoard(){
-
-        for (BoardSpace[] row : spaces){
-            for (BoardSpace bs : row){
-                System.out.print(bs + " ");
-            }
-            System.out.println();
-        }
-    }
-
-
 
     public void setBoardDisplay(BoardDisplay boardDisplay) {
         this.boardDisplay = boardDisplay;
     }
 
-    public static void main(String[] args) {
-
-        //Make new board and read in text file
-        Board board = new Board();
-        board.printBoard();
-    }
 
 
     public void setDisplay(BoardDisplay boardDisplay, Controller controller) {
@@ -133,4 +116,11 @@ public class Board {
 
         return rep;
     }
+
+    public static void main(String[] args) {
+
+        //Make new board and read in text file
+        Board board = new Board();
+    }
+
 }

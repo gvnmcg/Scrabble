@@ -1,4 +1,5 @@
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
@@ -9,38 +10,44 @@ import java.util.ArrayList;
 
 public class BoardDisplay {
 
-    int leftM = 10;
-    int topM = 10;
+    //root of the display
+    VBox boardVBox = new VBox();
 
-    Group group = new Group();
+    //access the hboes in the vbox
+    ArrayList<HBox> hBoxes = new ArrayList<>();
 
-    VBox boardVBox;
-
-    ArrayList<HBox> hBoxes;
-
+    //determines actions when groups are clicked
     Controller controller;
 
     BoardDisplay(Board board, Controller controller){
-
         this.controller = controller;
+
+        boardVBox = new VBox();
+        boardVBox.setAlignment(Pos.TOP_CENTER);
 
         initBoardSpaces(board);
     }
 
 
-    VBox initBoardSpaces(Board board){
+    /**
+     * creates the components in the main dats structres
+     * @param board
+     * @return
+     */
+    private void initBoardSpaces(Board board){
 
-        boardVBox = new VBox();
         HBox rowHBow;
-        hBoxes = new ArrayList<>();
-
         Group g;
 
+        //add row (hbox) to Vbox
         for (int i = 0; i < 15; i++) {
 
             boardVBox.getChildren().add(rowHBow = new HBox());
+            rowHBow.setAlignment(Pos.TOP_CENTER);
             hBoxes.add(rowHBow);
 
+            //creates and adds groups to Hboxes
+            //adds controllers event handlers
             for (int j = 0; j < 15; j++) {
 
                 g = DisplayComponents.makeBoardSpaceGroup(board.getBoardSpace(i,j));
@@ -54,7 +61,6 @@ public class BoardDisplay {
                         controller.handleSpaceClick(board.getBoardSpace(i, j), i, j));
             }
         }
-        return boardVBox;
     }
 
     void update(Board board){

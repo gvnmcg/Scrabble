@@ -1,5 +1,6 @@
 import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Rectangle;
 
 import java.util.HashMap;
 
@@ -7,21 +8,17 @@ public class Display {
 
     //Display helper objects
 
-    BorderPane layout = new BorderPane();
+    private BorderPane layout = new BorderPane();
 
     private Controller controller;
 
-    DisplayComponents components;
-
-    BoardDisplay boardDisplay;
-
-    PlayerDisplay playerDisplay;
+    private DisplayComponents components;
 
 
     //settings
 
-    final static int WIDTH = 1500;
-    final static int HEIGHT = 1000;
+    final static int WIDTH = 700;
+    final static int HEIGHT = 700;
 
     int LEFT_MARGIN = 10;
     int TOP_MARGIN = 20;
@@ -31,14 +28,11 @@ public class Display {
 
     //display Game Objects
 
-    BoardDisplay boardDisplay;
-    TrayDisplay trayDisplay;
-    PlayerDisplay currentPlayerDisplay;
+    private BoardDisplay boardDisplay;
+    private PlayerDisplay currentPlayerDisplay;
 
-    HashMap<Player, PlayerDisplay> playerDisplayMap = new HashMap<>();
-
-
-    HashMap<Integer, Group> letterGroupMap = new HashMap<>();
+    private HashMap<Player, PlayerDisplay> playerDisplayMap = new HashMap<>();
+    private HashMap<Letter, Group> letterGroupMap = new HashMap<>();
 
     Display(){
 
@@ -79,6 +73,10 @@ public class Display {
     void setCurrentPlayerDisplay(Player player){
         currentPlayerDisplay = playerDisplayMap.get(player);
         layout.setBottom(currentPlayerDisplay.getRoot());
+
     }
 
+    public BorderPane getLayout() {
+        return layout;
+    }
 }

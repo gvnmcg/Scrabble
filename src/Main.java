@@ -22,9 +22,10 @@ public class Main extends Application {
 
         Display display = new Display();
         Manager manager = new Manager();
+        manager.setDisplay(display);
 
         primaryStage.setTitle("Scrabble");
-        primaryStage.setScene(new Scene(display.layout, Display.WIDTH, Display.HEIGHT));
+        primaryStage.setScene(new Scene(display.getLayout(), Display.WIDTH, Display.HEIGHT));
         primaryStage.show();
     }
 

@@ -20,9 +20,6 @@ public class TrayDisplay {
         hBox.setAlignment(Pos.TOP_CENTER);
         hBox.getChildren().add(divider);
 
-        addHandlers(player.getTray());
-
-        //add selected letter space;
     }
 
     void addHandlers(Tray tray){

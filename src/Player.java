@@ -5,8 +5,6 @@ import java.util.LinkedList;
 
 public class Player {
 
-    private Tray tray;
-
     LinkedList<Letter> trayList = new LinkedList<>();
 
     //display components
@@ -15,12 +13,12 @@ public class Player {
 
     Player(Board board, LetterBag bag){
 
-        tray = new Tray(bag);
+        for (int i = 0; i < 7; i++) {
+            trayList.add(bag.draw());
+        }
+
     }
 
-    Letter getSelectedLetter(){
-        return tray.selected;
-    }
 
 
     boolean placeLetter(Letter l, int x, int y){
@@ -37,9 +35,6 @@ public class Player {
         this.playerDisplay = playerDisplay;
     }
 
-    public Tray getTray() {
-        return tray;
-    }
 
     public LinkedList<Letter> getTrayList() {
         return trayList;

@@ -18,13 +18,14 @@ public class Manager {
 
     private Display display;
 
+    long time;
+
 
     Manager(){
 
         //setup Game objects
         bag = new LetterBag();
         board = new Board();
-        board.printBoard();
 
         p1 = new Player(board, bag);
 
@@ -47,11 +48,16 @@ public class Manager {
         this.display = display;
         display.setController(controller);
 
+        //board display
         board.setBoardDisplay(display.makeBoardDisplay(board));
 
-        //TODO make multiple players
-        p1.setPlayerDisplay(display.makePlayerDisplay(currentPlayer));
+        //player displays
+        //TODO make multiple players, for now just show p1
+
+        PlayerDisplay playerDisplay = display.makePlayerDisplay(p1);
+        p1.setPlayerDisplay(playerDisplay);
         display.setCurrentPlayerDisplay(p1);
+
 
     }
 }

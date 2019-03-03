@@ -8,9 +8,8 @@ import java.util.LinkedList;
 
 public class PlayerDisplay {
 
-    HBox hBox ;
+    HBox hBox;
 
-    //    Rectangle divider = new Rectangle(10, 10);
     Group divider = new Group();
 
     Controller controller;
@@ -22,31 +21,26 @@ public class PlayerDisplay {
         hBox.setAlignment(Pos.TOP_CENTER);
         hBox.getChildren().add(divider);
 
-        addHandlers(player.getTray());
-
         //init
         update(player.getTrayList());
     }
 
     private void update(LinkedList<Letter> letters){
 
+        Group g;
+
+        hBox.getChildren().clear();
         for (Letter l : letters){
-            hBox.getChildren().add(DisplayComponents.makeLetterGroup(l));
+            g = DisplayComponents.makeLetterGroup(l);
+            hBox.getChildren().add(g);
+            addHandlers(g, l);
         }
 
     }
 
 
-    private void addHandlers(Tray tray){
-        Group g;
-        for (Letter l : tray.letters){
-
-            g = DisplayComponents.makeLetterGroup(l);
-            g.addEventHandler(MouseEvent.MOUSE_CLICKED, controller.handleLetterSelection(l));
-            g.addEventHandler(MouseEvent.MOUSE_CLICKED, handleLetterSelection(l, g));
-
-            hBox.getChildren().add(g);
-        }
+    private void addHandlers(Group g, Letter l){
+        g.addEventHandler(MouseEvent.MOUSE_CLICKED, controller.handleLetterSelection(l));
     }
 
 
