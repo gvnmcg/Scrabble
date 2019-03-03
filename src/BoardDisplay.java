@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BoardDisplay {
 
@@ -18,6 +19,9 @@ public class BoardDisplay {
 
     //determines actions when groups are clicked
     Controller controller;
+
+    //space to group
+    HashMap<BoardSpace, Group> groupMap = new HashMap<>();
 
     BoardDisplay(Board board, Controller controller){
         this.controller = controller;
@@ -38,6 +42,7 @@ public class BoardDisplay {
 
         HBox rowHBow;
         Group g;
+        BoardSpace bs;
 
         //add row (hbox) to Vbox
         for (int i = 0; i < 15; i++) {
@@ -50,15 +55,21 @@ public class BoardDisplay {
             //adds controllers event handlers
             for (int j = 0; j < 15; j++) {
 
-                g = DisplayComponents.makeBoardSpaceGroup(board.getBoardSpace(i,j));
+                //map game object to display object
+                bs = board.getBoardSpace(i,j);
+                g = DisplayComponents.makeBoardSpaceGroup(bs);
 
+                groupMap.put(bs, g);
+
+                //add
                 rowHBow.getChildren().add(g);
 
-                g.addEventHandler(MouseEvent.MOUSE_CLICKED ,
-                        handleBlankSpace(board.getBoardSpace(i, j) , g));
+                //set handlers
+//                g.addEventHandler(MouseEvent.MOUSE_CLICKED ,
+//                        handleBlankSpace(board.getBoardSpace(i, j) , g));
 
                 g.addEventHandler(MouseEvent.MOUSE_CLICKED,
-                        controller.handleSpaceClick(board.getBoardSpace(i, j), i, j));
+                        controller.handleSpaceClick(board.getBoardSpace(i, j)));
             }
         }
     }
@@ -84,6 +95,33 @@ public class BoardDisplay {
         }
     }
 
+
+    public void update(HashMap<BoardSpace,Letter> letterMap) {
+
+        Letter l;
+        Group g;
+
+        for (BoardSpace bs : letterMap.keySet()){
+
+            l = letterMap.get(bs);
+            g = DisplayComponents.makeLetterGroup(l);
+            groupMap.put(bs, g);
+
+            g.getChildren().add(groupMap.get(bs));
+        }
+
+    }
+
+    public void update(BoardSpace bs, Letter l) {
+
+        Group bsG = groupMap.get(bs);
+        Group letterGroup = DisplayComponents.makeLetterGroup(l);
+
+        bsG.getChildren().add(letterGroup);
+
+
+    }
+
     private EventHandler<MouseEvent> handleBlankSpace(BoardSpace bs, Group g) {
         return new EventHandler<MouseEvent>() {
             @Override
@@ -98,4 +136,7 @@ public class BoardDisplay {
     public VBox getRoot() {
         return boardVBox;
     }
+
+
+
 }

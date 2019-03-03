@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 public class Player {
 
-    LinkedList<Letter> trayList = new LinkedList<>();
+    private LinkedList<Letter> trayList = new LinkedList<>();
 
-    Letter selectedLetter;
+    private Letter selectedLetter;
 
     //display components
 
@@ -23,12 +23,13 @@ public class Player {
 
     public void setSelectedLetter(Letter selectedLetter) {
         this.selectedLetter = selectedLetter;
-        playerDisplay.showLetterSelect(trayList.indexOf(selectedLetter));
 
         if (trayList.contains(selectedLetter)){
             trayList.remove(selectedLetter);
             trayList.add(selectedLetter);
         }
+
+        playerDisplay.update(getTrayList());
     }
 
     boolean placeLetter(Letter l, int x, int y){
@@ -50,4 +51,7 @@ public class Player {
         return trayList;
     }
 
+    public Letter getSelectedLetter() {
+        return selectedLetter;
+    }
 }

@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Board {
@@ -11,9 +12,15 @@ public class Board {
 
     private ArrayList<BoardSpace> boardSpaceList = new ArrayList<>();
 
-    private HashMap<BoardSpace, Letter> wordSpaceLetterMap = new HashMap<>();
+    private HashMap<BoardSpace, Letter> letterMap = new HashMap<>();
 
     private Dictionary dictionary = new Dictionary();
+
+
+    //keep track of player move
+
+    LinkedList<Letter> currentMove = new LinkedList<>();
+    HashMap<Letter, BoardSpace> moveMap = new HashMap<>();
 
 
     //Display
@@ -26,10 +33,15 @@ public class Board {
 
     }
 
-    void placeLetter(Letter l, int x, int y){
-        BoardSpace ws = boardSpaceList.get( ( y * sideLength ) + x );
-        ws.setLetter(l);
-        wordSpaceLetterMap.put(ws, l);
+    void placeLetter(BoardSpace bs, Letter l){
+
+        //TODO
+        System.out.println("place " + l + " on " + bs );
+
+        bs.setLetter(l);
+        letterMap.put(bs, l);
+
+        boardDisplay.update(bs, l);
     }
 
     boolean isAvailable(int x, int y){

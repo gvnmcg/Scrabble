@@ -42,6 +42,17 @@ public class Manager {
         currentPlayer.setSelectedLetter(l);
     }
 
+    public void selectBoardSpace(BoardSpace bs) {
+
+        //move selected Letter to a list , board.currentMove
+        // put letter on board
+        board.placeLetter(bs, currentPlayer.getSelectedLetter());
+
+        //remove from player disp
+        //notify if this is a playable word
+        //
+    }
+
     /**
      *
      *  init display components in Game Objects
@@ -66,6 +77,7 @@ public class Manager {
 
 
     }
+
 
 
 }
