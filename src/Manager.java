@@ -36,6 +36,12 @@ public class Manager {
 
     }
 
+
+    public void selectLetter(Letter l) {
+
+        currentPlayer.setSelectedLetter(l);
+    }
+
     /**
      *
      *  init display components in Game Objects
@@ -60,4 +66,6 @@ public class Manager {
 
 
     }
+
+
 }

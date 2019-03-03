@@ -25,7 +25,7 @@ public class PlayerDisplay {
         update(player.getTrayList());
     }
 
-    private void update(LinkedList<Letter> letters){
+    void update(LinkedList<Letter> letters){
 
         Group g;
 
@@ -35,6 +35,15 @@ public class PlayerDisplay {
             hBox.getChildren().add(g);
             addHandlers(g, l);
         }
+
+    }
+
+    void showLetterSelect(int i){
+
+        Group g = (Group)hBox.getChildren().get(i);
+
+        hBox.getChildren().remove(g);
+        hBox.getChildren().add(g);
 
     }
 

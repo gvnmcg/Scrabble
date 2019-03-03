@@ -7,6 +7,8 @@ public class Player {
 
     LinkedList<Letter> trayList = new LinkedList<>();
 
+    Letter selectedLetter;
+
     //display components
 
     PlayerDisplay playerDisplay;
@@ -19,7 +21,15 @@ public class Player {
 
     }
 
+    public void setSelectedLetter(Letter selectedLetter) {
+        this.selectedLetter = selectedLetter;
+        playerDisplay.showLetterSelect(trayList.indexOf(selectedLetter));
 
+        if (trayList.contains(selectedLetter)){
+            trayList.remove(selectedLetter);
+            trayList.add(selectedLetter);
+        }
+    }
 
     boolean placeLetter(Letter l, int x, int y){
 
