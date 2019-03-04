@@ -12,16 +12,16 @@ import java.util.HashMap;
 public class BoardDisplay {
 
     //root of the display
-    VBox boardVBox = new VBox();
+    private VBox boardVBox;
 
     //access the hboes in the vbox
-    ArrayList<HBox> hBoxes = new ArrayList<>();
+    private ArrayList<HBox> hBoxes = new ArrayList<>();
 
     //determines actions when groups are clicked
-    Controller controller;
+    private Controller controller;
 
     //space to group
-    HashMap<BoardSpace, Group> groupMap = new HashMap<>();
+    private HashMap<BoardSpace, Group> groupMap = new HashMap<>();
 
     BoardDisplay(Board board, Controller controller){
         this.controller = controller;
@@ -112,13 +112,12 @@ public class BoardDisplay {
 
     }
 
-    public void update(BoardSpace bs, Letter l) {
+    public void addLetterGroup(BoardSpace bs, Letter l) {
 
-        Group bsG = groupMap.get(bs);
+        Group bsGroup = groupMap.get(bs);
         Group letterGroup = DisplayComponents.makeLetterGroup(l);
 
-        bsG.getChildren().add(letterGroup);
-
+        bsGroup.getChildren().add(letterGroup);
 
     }
 

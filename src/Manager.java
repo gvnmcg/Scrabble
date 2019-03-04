@@ -37,20 +37,66 @@ public class Manager {
     }
 
 
+    /**
+     *  Event Handler method:
+     *
+     *  -assign players selected letter
+     *  -move sL to end
+     *  -move Sl Group to End
+     * @param l
+     */
     public void selectLetter(Letter l) {
 
         currentPlayer.setSelectedLetter(l);
     }
 
+    /**
+     *
+     * Event Handler:
+     *
+     * -remove selected letter from player tray
+     * -addLetterGroup player display
+     *
+     * -place letter in board data structure
+     * -place letter group in boardSpace Group
+     * @param bs
+     */
     public void selectBoardSpace(BoardSpace bs) {
 
         //move selected Letter to a list , board.currentMove
         // put letter on board
-        board.placeLetter(bs, currentPlayer.getSelectedLetter());
+        Letter sL = currentPlayer.removeSelectedLetter();
+        board.placeLetter(bs, sL);
 
+        //TODO
         //remove from player disp
         //notify if this is a playable word
         //
+    }
+
+    public void resetMove(){
+
+        //TODO
+        currentPlayer.resetMove();
+        board.resetMove();
+    }
+
+    boolean confirmWord(){
+        //TODO
+        //dictionary confirms word -if
+
+        //refill bag
+        //reset moves
+        currentPlayer.refillTray(bag);
+        currentPlayer.confirmWord();
+
+        //update board
+        board.confirmWord();
+
+        //switch player
+
+
+        return true;
     }
 
     /**

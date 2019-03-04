@@ -94,4 +94,8 @@ public class LetterBag {
 
 
     }
+
+    public boolean isEmpty() {
+        return letters.isEmpty();
+    }
 }

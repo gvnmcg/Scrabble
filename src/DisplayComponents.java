@@ -17,7 +17,9 @@ public class DisplayComponents {
 
         Group g = new Group();
 
-        Rectangle r = new Rectangle(scale, scale);
+        Rectangle r = new Rectangle(
+                scale + (scale * (.35)),
+                scale + (scale * (.35)));
         r.setFill(Color.LIGHTGREY);
         r.setStroke(Color.LIGHTGREY);
         g.getChildren().add(r);
@@ -51,6 +53,12 @@ public class DisplayComponents {
         Rectangle r = new Rectangle(scale, scale);
         r.setFill(Color.GREEN);
         r.setStroke(Color.BROWN);
+
+//        r.setTranslateX(scale * (.15));
+//        r.setTranslateY(scale * (.15));
+
+        g.setLayoutX(5);
+        g.setLayoutY(5);
         g.getChildren().add(r);
 
         //letter
@@ -63,7 +71,7 @@ public class DisplayComponents {
 
         //score
         t = new Text(String.valueOf(l.score));
-        t.setX(scale * (.75));
+        t.setX(scale * (.65));
         t.setY(scale * (.35));
         g.getChildren().add(t);
 

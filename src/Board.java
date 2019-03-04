@@ -19,8 +19,8 @@ public class Board {
 
     //keep track of player move
 
-    LinkedList<Letter> currentMove = new LinkedList<>();
-    HashMap<Letter, BoardSpace> moveMap = new HashMap<>();
+    private LinkedList<Letter> currentMove = new LinkedList<>();
+    private HashMap<Letter, BoardSpace> moveMap = new HashMap<>();
 
 
     //Display
@@ -41,7 +41,23 @@ public class Board {
         bs.setLetter(l);
         letterMap.put(bs, l);
 
-        boardDisplay.update(bs, l);
+        boardDisplay.addLetterGroup(bs, l);
+    }
+
+    /**
+     * resets move
+     * removes letter from board
+     * clears moveMap
+     *
+     */
+    public void resetMove() {
+
+        for (Letter l : currentMove){
+
+            moveMap.get(l).setLetter(null);
+            moveMap.remove(l);
+        }
+        boardDisplay.update(letterMap);
     }
 
     boolean isAvailable(int x, int y){
@@ -104,16 +120,12 @@ public class Board {
     }
 
 
+
+
     public void setBoardDisplay(BoardDisplay boardDisplay) {
         this.boardDisplay = boardDisplay;
     }
 
-
-
-    public void setDisplay(BoardDisplay boardDisplay, Controller controller) {
-
-        this.boardDisplay = boardDisplay;
-    }
 
     @Override
     public String toString() {
@@ -135,4 +147,7 @@ public class Board {
         Board board = new Board();
     }
 
+
+    public void confirmWord() {
+    }
 }
