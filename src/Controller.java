@@ -33,4 +33,26 @@ public class Controller {
             }
         };
     }
+
+    EventHandler<MouseEvent> handleReset() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("reset");
+                manager.resetMove();
+            }
+        };
+    }
+
+
+    EventHandler<MouseEvent> handleConfirm() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                System.out.println("confirm");
+                manager.confirmWord();
+            }
+        };
+    }
 }

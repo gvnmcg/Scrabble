@@ -60,6 +60,19 @@ public class Board {
         boardDisplay.update(letterMap);
     }
 
+    public int confirmWord() {
+
+        //TODO
+
+        //check every "line" of letters down and across
+        //return score
+
+        //add each (point value * space multiplier)
+        //if word multiplier, save til end and multiply
+
+        return 0;
+    }
+
     boolean isAvailable(int x, int y){
         return spaces[x][y].hasLetter();
     }
@@ -148,6 +161,5 @@ public class Board {
     }
 
 
-    public void confirmWord() {
-    }
+
 }
