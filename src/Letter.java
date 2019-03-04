@@ -2,13 +2,8 @@ import java.util.Scanner;
 
 public class Letter {
 
-    char c;
-    int score;
-
-    int x;
-    int y;
-
-
+    private char c;
+    private int score;
 
     Letter(char c, int score){
         this.c = c;
@@ -26,6 +21,14 @@ public class Letter {
         score = Integer.parseInt(sc.next());
         sc.close();
 
+    }
+
+    public char getChar() {
+        return c;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override

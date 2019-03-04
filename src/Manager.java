@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Load LetterBag, Board, Players, Trays, and
  */
@@ -20,12 +22,14 @@ public class Manager {
 
     long time;
 
+    private Scrabble scrabble;
+
 
     Manager(){
 
         //setup Game objects
         bag = new LetterBag();
-        board = new Board();
+        board = new Board(bag.draw());
 
         p1 = new Player(board, bag);
 
@@ -33,6 +37,17 @@ public class Manager {
 
         currentPlayer = p1;
         this.controller = new Controller(this);
+
+
+
+    }
+
+    void startGame(){
+        //game
+        LinkedList<Player> players = new LinkedList<>();
+        players.add(p1);
+        players.add(p2);
+        scrabble = new Scrabble(players, bag, board);
 
     }
 
@@ -91,9 +106,10 @@ public class Manager {
         currentPlayer.confirmWord();
 
         //update board
-        board.confirmWord();
+        board.confirmBoard();
 
         //switch player
+        currentPlayer = scrabble.nextPlayer(currentPlayer);
 
 
         return true;

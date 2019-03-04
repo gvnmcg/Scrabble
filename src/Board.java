@@ -27,9 +27,10 @@ public class Board {
 
     BoardDisplay boardDisplay;
 
-    Board(){
+    Board(Letter startLetter){
 
         readIn("src/txt/scrabble_board.txt");
+
 
     }
 
@@ -60,17 +61,35 @@ public class Board {
         boardDisplay.update(letterMap);
     }
 
-    public int confirmWord() {
+    public boolean confirmBoard() {
 
-        //TODO
-
+        String word = "";
         //check every "line" of letters down and across
+        //every row
+        for (BoardSpace[] row : spaces){
+            //horizontal check
+            for (BoardSpace bs : row){
+
+                if (bs.hasLetter()){
+                    word += bs.getLetter().getChar();
+                } else {
+                    if (!word.equals("")){
+                        if (!dictionary.isWord(word)){
+                            return false;
+                        }
+                    }
+                    word = "";
+                }
+            }
+            word = "";
+        }
         //return score
 
         //add each (point value * space multiplier)
         //if word multiplier, save til end and multiply
 
-        return 0;
+        return true;
+
     }
 
     boolean isAvailable(int x, int y){
@@ -157,7 +176,7 @@ public class Board {
     public static void main(String[] args) {
 
         //Make new board and read in text file
-        Board board = new Board();
+        Board board = new Board(null);
     }
 
 

@@ -5,14 +5,20 @@ import java.util.Timer;
 
 public class Dictionary {
 
+    private Trie trie = new Trie();
+
     Dictionary() {
 
 
     }
 
-    Trie trie = new Trie();
+    boolean isWord(String word){
+        return trie.find(word);
+    }
 
-    void readIn(String filename) throws FileNotFoundException{
+
+
+    void readIn(String filename){
 
         Scanner scanner = null;
 
@@ -35,7 +41,7 @@ public class Dictionary {
         System.out.println("dictionary time: " + (System.currentTimeMillis() - time));
     }
 
-    public static void main(String[] args)  throws FileNotFoundException{
+    public static void main(String[] args)  {
 
 
         //args = [ dictionary_filename ... ]
@@ -43,11 +49,7 @@ public class Dictionary {
         //create Dictionary and read in the textfile
 
         Dictionary dictionary = new Dictionary();
-        try {
-            dictionary.readIn(args[0]);
-        } catch (FileNotFoundException fx){
-            fx.fillInStackTrace();
-        }
+        dictionary.readIn(args[0]);
 
         // test if the text file is stored and retrievable
         //names are not retrivable

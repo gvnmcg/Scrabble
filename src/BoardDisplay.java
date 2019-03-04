@@ -88,7 +88,7 @@ public class BoardDisplay {
 
                    Node n = hBoxes.get(j).getChildren().get(i);
 
-                   ((Group)n).getChildren().add(DisplayComponents.makeLetterGroup(bs.letter));
+                   ((Group)n).getChildren().add(DisplayComponents.makeLetterGroup(bs.getLetter()));
 
                }
             }

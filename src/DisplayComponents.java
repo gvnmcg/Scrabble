@@ -27,12 +27,12 @@ public class DisplayComponents {
         Text t = null;
         //score
 
-        if (ws.wsm > 1){
-            t = new Text(String.valueOf(ws.wsm));
+        if (ws.getWordScoreMultiplier() > 1){
+            t = new Text(String.valueOf(ws.getWordScoreMultiplier()));
             r.setFill(Color.LIGHTSALMON);
 
-        } else if (ws.lsm > 1){
-            t = new Text(String.valueOf(ws.lsm));
+        } else if (ws.getLetterScoreMultiplier() > 1){
+            t = new Text(String.valueOf(ws.getLetterScoreMultiplier()));
             r.setFill(Color.LIGHTBLUE);
 
         } else {
@@ -63,14 +63,14 @@ public class DisplayComponents {
 
         //letter
         Text t;
-        t = new Text(String.valueOf(l.c));
+        t = new Text(String.valueOf(l.getChar()));
         t.setFont(Font.font(25));
         t.setX(scale * (.25));
         t.setY(scale * (.85));
         g.getChildren().add(t);
 
         //score
-        t = new Text(String.valueOf(l.score));
+        t = new Text(String.valueOf(l.getScore()));
         t.setX(scale * (.65));
         t.setY(scale * (.35));
         g.getChildren().add(t);

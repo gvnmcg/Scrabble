@@ -10,9 +10,9 @@ public class BoardSpaceDisplay {
     BoardSpaceDisplay(BoardSpace bs, int x, int y){
 
         rep = new Rectangle( x, y, spaceSize, spaceSize);
-        if (bs.wsm > 1){
+        if (bs.getWordScoreMultiplier() > 1){
             rep.setFill(Color.RED);
-        } else if (bs.lsm > 1){
+        } else if (bs.getLetterScoreMultiplier() > 1){
             rep.setFill(Color.BLUE);
         } else {
             rep.setFill(Color.TAN);

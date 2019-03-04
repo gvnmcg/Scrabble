@@ -51,7 +51,7 @@ public class Tray {
 
         for (Letter l : letters){
 
-            rep += l.c;
+            rep += l.getChar();
         }
 
         return rep;

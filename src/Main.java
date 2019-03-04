@@ -27,6 +27,9 @@ public class Main extends Application {
         primaryStage.setTitle("Scrabble");
         primaryStage.setScene(new Scene(display.getLayout(), Display.WIDTH, Display.HEIGHT));
         primaryStage.show();
+
+        manager.startGame();
+
     }
 
 

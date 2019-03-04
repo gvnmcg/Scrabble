@@ -1,10 +1,10 @@
 public class BoardSpace {
 
-    Letter letter;
+    private Letter letter;
 
     //letter score multiplier
-    int lsm;
-    int wsm;
+    private int lsm;
+    private int wsm;
 
     String rep;
 
@@ -32,7 +32,7 @@ public class BoardSpace {
     public String toString() {
 
         if (hasLetter()){
-            return " " + letter.c;
+            return " " + letter.getChar();
         }
 
         return "" + (lsm==1 ? "." : lsm) + ""  + "" + (wsm==1 ? "." : wsm);
@@ -40,5 +40,17 @@ public class BoardSpace {
 
     public void setLetter(Letter l) {
         letter = l;
+    }
+
+    public Letter getLetter() {
+        return letter;
+    }
+
+    public int getLetterScoreMultiplier() {
+        return lsm;
+    }
+
+    public int getWordScoreMultiplier() {
+        return wsm;
     }
 }

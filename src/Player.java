@@ -10,6 +10,8 @@ public class Player {
 
     int score;
 
+    private String name;
+
     //used to make moves
 
     private Letter selectedLetter;
