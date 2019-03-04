@@ -9,19 +9,11 @@ public class Scrabble {
 
     Player currentPlayer;
     int index;
-    LinkedList<Player> players;
-
-    LetterBag letterBag;
+    LinkedList<Player> players = new LinkedList<>();
 
     //Display
     Text text = new Text();
 
-    Scrabble(LinkedList<Player> players, LetterBag bag, Board board){
-        this.players = players;
-        this.letterBag = bag;
-
-
-    }
 
     Player startGame(){
         return currentPlayer =
@@ -56,5 +48,9 @@ public class Scrabble {
 
     public Text getText() {
         return text;
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
     }
 }

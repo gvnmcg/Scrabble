@@ -1,6 +1,15 @@
 public class ComputerPlayer extends Player {
 
-    ComputerPlayer(Board board, LetterBag bag) {
-        super(board, bag);
+    Board board;
+
+    ComputerPlayer(String name){
+        super(name);
+
+    }
+
+
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }

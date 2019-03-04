@@ -1,5 +1,6 @@
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -134,11 +135,21 @@ public class Display {
 
         VBox leftBox = new VBox();
 
+        HBox hBox;
+
         for (Player p : scrabble.getPlayers()){
 
-            leftBox.getChildren().add( new Text(String.valueOf(p.getScore())));
+            hBox = new HBox();
+            hBox.getChildren().add(new Text(p.getName()));
+            hBox.getChildren().add(p.getScoreText());
+
+            leftBox.getChildren().add(hBox);
         }
 
         layout.setLeft(leftBox);
+    }
+
+    Scene getScene(){
+        return new Scene(layout, WIDTH, HEIGHT);
     }
 }

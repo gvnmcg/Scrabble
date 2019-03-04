@@ -32,31 +32,38 @@ public class Manager {
 
     Manager(){
 
+
         //setup Game objects
         bag = new LetterBag();
         board = new Board(bag.draw());
 
-        p1 = new Player(board, bag);
-
-        p2 = new ComputerPlayer(board, bag);
-
-        currentPlayer = p1;
         this.controller = new Controller(this);
 
         dictionary = new Dictionary();
-        startGame();
-
     }
 
-    void startGame(){
+    void startGame(Scrabble scrabble){
+        this.scrabble = scrabble;
         //game
         LinkedList<Player> players = new LinkedList<>();
-        players.add(p1);
-        players.add(p2);
-        scrabble = new Scrabble(players, bag, board);
+        players.add(p2 = new ComputerPlayer(" cpu"));
+        players.add(p1 = new Player("p1"));
+
+        scrabble = new Scrabble();
+
+        for (Player p : players){
+            p.setTrayList(bag);
+            scrabble.addPlayer(p);
+
+            System.out.println(p.getName() + " -- " + p.getTray());
+
+            if( p instanceof ComputerPlayer){
+                ((ComputerPlayer) p).setBoard(board);
+            }
+        }
+        currentPlayer = players.get(0);
 
         firstMove = true;
-
 
     }
 
@@ -146,6 +153,7 @@ public class Manager {
             //switch player
             currentPlayer = scrabble.nextPlayer(currentPlayer);
             display.setGameInfo(scrabble);
+            display.setCurrentPlayerDisplay(currentPlayer);
         }
         return true;
     }
@@ -170,9 +178,15 @@ public class Manager {
         //player displays
         //TODO make multiple players, for now just show p1
 
-        PlayerDisplay playerDisplay = display.makePlayerDisplay(p1);
-        p1.setPlayerDisplay(playerDisplay);
-        display.setCurrentPlayerDisplay(p1);
+        for (Player p : scrabble.getPlayers()){
+            PlayerDisplay playerDisplay = display.makePlayerDisplay(p);
+            p.setPlayerDisplay(playerDisplay);
+            display.setCurrentPlayerDisplay(p);
+        }
+
+//        PlayerDisplay playerDisplay = display.makePlayerDisplay(p1);
+//        p1.setPlayerDisplay(playerDisplay);
+//        display.setCurrentPlayerDisplay(p1);
 
         display.setGameInfo(scrabble);
 

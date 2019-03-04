@@ -1,3 +1,4 @@
+import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -7,7 +8,8 @@ public class Player {
 
     private LinkedList<Letter> trayList = new LinkedList<>();
 
-    private int score;
+    private int score = 0;
+    private Text scoreText = new Text(String.valueOf(score));
 
     private String name;
 
@@ -22,16 +24,18 @@ public class Player {
 
     PlayerDisplay playerDisplay;
 
-    Player(Board board, LetterBag bag){
 
+    Player(String name){
+
+        this.name = name;
+    }
+
+
+    public void setTrayList(LetterBag bag) {
         for (int i = 0; i < 7; i++) {
             trayList.add(bag.draw());
         }
-
-        score = 0;
-
     }
-
 
     /**
      * rearranges letter
@@ -110,6 +114,7 @@ public class Player {
 
     public void addPoints(int computedMove) {
         score += computedMove;
+        scoreText.setText(String.valueOf(score));
     }
 
     public void confirmWord() {
@@ -124,5 +129,9 @@ public class Player {
 
     public int getScore() {
         return score;
+    }
+
+    public Text getScoreText() {
+        return scoreText;
     }
 }
