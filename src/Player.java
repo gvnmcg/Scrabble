@@ -70,14 +70,20 @@ public class Player {
     }
 
 
-    public void confirmWord() {
+    public void confirmWord(Dictionary dictionary) {
 
         //TODO
         updateScore();
 
         //add move to moves
         moves.add(currentMove);
-        currentMove = new LinkedList<>();
+
+        String word = "";
+        for (Letter l : currentMove){
+            word += l.getChar();
+        }
+
+        System.out.println(word + " -- " + dictionary.isWord(word));
     }
 
     private void updateScore() {
@@ -98,5 +104,7 @@ public class Player {
     }
 
 
-
+    public void placeLetter(Letter l) {
+        currentMove.add(l);
+    }
 }

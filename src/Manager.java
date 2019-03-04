@@ -24,6 +24,9 @@ public class Manager {
 
     private Scrabble scrabble;
 
+    private Dictionary dictionary ;
+
+
 
     Manager(){
 
@@ -38,7 +41,7 @@ public class Manager {
         currentPlayer = p1;
         this.controller = new Controller(this);
 
-
+        dictionary = new Dictionary();
 
     }
 
@@ -48,6 +51,9 @@ public class Manager {
         players.add(p1);
         players.add(p2);
         scrabble = new Scrabble(players, bag, board);
+
+        currentPlayer.setSelectedLetter(bag.draw());
+        selectBoardSpace(board.getBoardSpace(board.sideLength/2,board.sideLength/2));
 
     }
 
@@ -83,10 +89,17 @@ public class Manager {
         Letter sL = currentPlayer.removeSelectedLetter();
         board.placeLetter(bs, sL);
 
+
+        currentPlayer.placeLetter(sL);
+
+
         //TODO
         //remove from player disp
         //notify if this is a playable word
         //
+
+
+        currentPlayer.confirmWord(dictionary);
     }
 
     public void resetMove(){
@@ -103,10 +116,10 @@ public class Manager {
         //refill bag
         //reset moves
         currentPlayer.refillTray(bag);
-        currentPlayer.confirmWord();
+        currentPlayer.confirmWord(dictionary);
 
-        //update board
-        board.confirmBoard();
+        //confirm board
+        board.confirmBoard(dictionary);
 
         //switch player
         currentPlayer = scrabble.nextPlayer(currentPlayer);

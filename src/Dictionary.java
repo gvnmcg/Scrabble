@@ -9,7 +9,7 @@ public class Dictionary {
 
     Dictionary() {
 
-
+        readIn("src/txt/sowpods.txt");
     }
 
     boolean isWord(String word){

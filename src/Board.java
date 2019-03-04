@@ -14,7 +14,6 @@ public class Board {
 
     private HashMap<BoardSpace, Letter> letterMap = new HashMap<>();
 
-    private Dictionary dictionary = new Dictionary();
 
 
     //keep track of player move
@@ -61,7 +60,7 @@ public class Board {
         boardDisplay.update(letterMap);
     }
 
-    public boolean confirmBoard() {
+    public boolean confirmBoard(Dictionary dictionary) {
 
         String word = "";
         //check every "line" of letters down and across
@@ -73,7 +72,7 @@ public class Board {
                 if (bs.hasLetter()){
                     word += bs.getLetter().getChar();
                 } else {
-                    if (!word.equals("")){
+                    if (!word.equals("") && word.length() > 1){
                         if (!dictionary.isWord(word)){
                             return false;
                         }
@@ -83,10 +82,28 @@ public class Board {
             }
             word = "";
         }
-        //return score
+        BoardSpace bs;
 
-        //add each (point value * space multiplier)
-        //if word multiplier, save til end and multiply
+        for (int i = 0; i < sideLength; i++) {
+            for (int j = 0; j < sideLength; j++) {
+
+                bs = spaces[i][j];
+
+                if (bs.hasLetter()){
+                    word += bs.getLetter().getChar();
+                } else {
+                    if (!word.equals("") && word.length() > 1){
+                        if (!dictionary.isWord(word)){
+                            return false;
+                        }
+                    }
+                    word = "";
+                }
+            }
+            word = "";
+        }
+
+
 
         return true;
 

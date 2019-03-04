@@ -53,19 +53,6 @@ public class PlayerDisplay {
     }
 
 
-    private EventHandler<MouseEvent> handleLetterSelection(Letter l, Group g) {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hBox.getChildren().remove(divider);
-                hBox.getChildren().add(divider);
-                hBox.getChildren().remove(g);
-                hBox.getChildren().add(g);
-
-            }
-        };
-    }
-
     public HBox getRoot() {
         return hBox;
     }
