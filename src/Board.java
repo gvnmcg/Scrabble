@@ -47,7 +47,7 @@ public class Board {
         //add pair to the data stucture - to remove and check???
         letterMap.put(bs, l);
 
-        //update dislay
+        //showLetters dislay
         boardDisplay.addLetterGroup(bs, l);
     }
 
@@ -59,29 +59,40 @@ public class Board {
      */
     public void resetMove() {
 
+
+
         for (BoardSpace bs : currentMove){
             bs.setLetter(null);
             letterMap.remove(bs);
         }
-        boardDisplay.removeMove(this);
+        boardDisplay.removeMove(currentMove);
 
     }
 
     public boolean confirmBoard(Dictionary dictionary) {
 
+        boolean confirmed = true;
+
         String word = "";
         //check every "line" of letters down and across
         //every row
+        // horizontal check
         for (BoardSpace[] row : spaces){
-            //horizontal check
             for (BoardSpace bs : row){
 
+                //if we hit an empty scpace AND the word is not empty
+                //then I have a word
                 if (bs.hasLetter()){
                     word += bs.getLetter().getChar();
                 } else {
+
                     if (!word.equals("") && word.length() > 1){
+                        System.out.println("word detected -- " + word);
+
+                        //we can look it up
                         if (!dictionary.isWord(word)){
-                            return false;
+                            System.out.println(" is in dictionary");
+                            confirmed = false;
                         }
                     }
                     word = "";
@@ -91,17 +102,23 @@ public class Board {
         }
         BoardSpace bs;
 
+        //vertical check
         for (int i = 0; i < sideLength; i++) {
             for (int j = 0; j < sideLength; j++) {
 
-                bs = spaces[i][j];
+                bs = spaces[j][i];
 
                 if (bs.hasLetter()){
                     word += bs.getLetter().getChar();
                 } else {
+
                     if (!word.equals("") && word.length() > 1){
+                        System.out.println("word detected (down) -- " + word);
+
                         if (!dictionary.isWord(word)){
-                            return false;
+                            System.out.println(" is in dictionary");
+
+                            confirmed = false;
                         }
                     }
                     word = "";
@@ -111,7 +128,8 @@ public class Board {
         }
 
 
-
+        if (confirmed)System.out.println(" board good ");
+        else System.out.println(" not good ");
         return true;
 
     }
@@ -204,5 +222,21 @@ public class Board {
     }
 
 
+    public int  computeMove() {
 
+        int points = 0;
+        int mult = 1;
+        for (BoardSpace bs : currentMove){
+
+            points += (bs.getLetter().getScore()
+                    * bs.getLetterScoreMultiplier());
+
+            if (bs.getWordScoreMultiplier() > mult){
+                mult = bs.getWordScoreMultiplier();
+            }
+
+        }
+
+        return points;
+    }
 }

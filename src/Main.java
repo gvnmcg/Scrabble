@@ -16,9 +16,6 @@ public class Main extends Application {
 
         winow = primaryStage;
 
-//        Manager manager = new Manager();
-//        Controller controller = new Controller(manager);
-//        Display display = new Display(manager, controller);
 
         Display display = new Display();
         Manager manager = new Manager();

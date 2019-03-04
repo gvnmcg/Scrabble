@@ -1,4 +1,3 @@
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
@@ -22,10 +21,10 @@ public class PlayerDisplay {
         hBox.getChildren().add(divider);
 
         //init
-        update(player.getTrayList());
+        showLetters(player.getTray());
     }
 
-    void update(LinkedList<Letter> letters){
+    void showLetters(LinkedList<Letter> letters){
 
         Group g;
 

@@ -1,4 +1,5 @@
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.util.LinkedList;
@@ -30,11 +31,16 @@ public class Scrabble {
 
     Player nextPlayer(Player player){
 
-        if (players.iterator().hasNext()){
-            return currentPlayer = players.iterator().next();
-        } else {
-            return currentPlayer = players.get(0);
-        }
+//        if (players.iterator().hasNext()){
+//            return currentPlayer = players.iterator().next();
+//        } else {
+//            return currentPlayer = players.get(0);
+//        }
+
+        Player p = players.pop();
+
+        players.addFirst(p);
+        return p;
     }
 
     HBox topBox(){
@@ -42,5 +48,13 @@ public class Scrabble {
 
         hBox.getChildren().add(text);
         return hBox;
+    }
+
+    public LinkedList<Player> getPlayers() {
+        return players;
+    }
+
+    public Text getText() {
+        return text;
     }
 }

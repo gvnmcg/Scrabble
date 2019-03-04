@@ -3,8 +3,10 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 import java.util.HashMap;
 
@@ -124,5 +126,19 @@ public class Display {
 
     public BorderPane getLayout() {
         return layout;
+    }
+
+    public void setGameInfo(Scrabble scrabble) {
+
+//        layout.setTop(scrabble.getText());
+
+        VBox leftBox = new VBox();
+
+        for (Player p : scrabble.getPlayers()){
+
+            leftBox.getChildren().add( new Text(String.valueOf(p.getScore())));
+        }
+
+        layout.setLeft(leftBox);
     }
 }

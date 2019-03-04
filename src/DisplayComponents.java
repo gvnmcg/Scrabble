@@ -28,11 +28,11 @@ public class DisplayComponents {
         //score
 
         if (ws.getWordScoreMultiplier() > 1){
-            t = new Text(String.valueOf(ws.getWordScoreMultiplier()));
+            t = new Text(String.valueOf("W" + ws.getWordScoreMultiplier()));
             r.setFill(Color.LIGHTSALMON);
 
         } else if (ws.getLetterScoreMultiplier() > 1){
-            t = new Text(String.valueOf(ws.getLetterScoreMultiplier()));
+            t = new Text(String.valueOf("L" + ws.getLetterScoreMultiplier()));
             r.setFill(Color.LIGHTBLUE);
 
         } else {

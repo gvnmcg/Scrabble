@@ -27,8 +27,6 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 //TODO
-                System.out.println("handle ");
-
                 manager.selectBoardSpace(bs);
             }
         };

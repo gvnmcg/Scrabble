@@ -71,25 +71,12 @@ public class BoardDisplay {
         }
     }
 
-    
-    public void removeMove(LinkedList<BoardSpace> move) {
-        Group g;
-        
-        for (BoardSpace bs : move){
-            
-            g = groupMap.get(bs);
-            
-            
-            
-            g = DisplayComponents.makeBoardSpaceGroup(bs);
-            
-//            groupMap.remove(bs);
-//            groupMap.put(bs, DisplayComponents.makeBoardSpaceGroup(bs));
-        }
-
-    }
-
-    public void addLetterGroup(BoardSpace bs, Letter l) {
+    /**
+     * add a letter group to board space Group
+     * @param bs
+     * @param l
+     */
+    void addLetterGroup(BoardSpace bs, Letter l) {
 
         Group bsGroup = groupMap.get(bs);
         Group letterGroup = DisplayComponents.makeLetterGroup(l);
@@ -97,6 +84,24 @@ public class BoardDisplay {
         bsGroup.getChildren().add(letterGroup);
 
     }
+
+    /**
+     * remove a letter space form a board group
+     * undoes addLetterGroup
+     * @param move
+     */
+    void removeMove(LinkedList<BoardSpace> move) {
+        Group g;
+        
+        for (BoardSpace bs : move){
+            
+            g = groupMap.get(bs);
+            g.getChildren().remove(g.getChildren().size() - 1);
+        }
+
+    }
+
+
 
     public VBox getRoot() {
         return boardVBox;

@@ -26,6 +26,8 @@ public class Manager {
 
     private Dictionary dictionary ;
 
+    private boolean firstMove;
+
 
 
     Manager(){
@@ -42,6 +44,7 @@ public class Manager {
         this.controller = new Controller(this);
 
         dictionary = new Dictionary();
+        startGame();
 
     }
 
@@ -52,8 +55,8 @@ public class Manager {
         players.add(p2);
         scrabble = new Scrabble(players, bag, board);
 
-        currentPlayer.setSelectedLetter(bag.draw());
-        selectBoardSpace(board.getBoardSpace(board.sideLength/2,board.sideLength/2));
+        firstMove = true;
+
 
     }
 
@@ -84,21 +87,35 @@ public class Manager {
      */
     public void selectBoardSpace(BoardSpace bs) {
 
-        // move selected Letter to a list , player.currentMove
-        // put letter on board
-        Letter sL = currentPlayer.removeSelectedLetter();
-        board.placeLetter(bs, sL);
+        //if its the first move, it must be placed in the center
+        if (firstMove){
+            if (!board.getBoardSpace(
+                    board.sideLength/2,
+                    board.sideLength/2).equals(bs)){
+                scrabble.text.setText("please place in center space");
+                return;
+            } else {
+                firstMove = false;
+            }
+        }
 
-        currentPlayer.placeLetter(sL);
+        //if the piece was not confirmed, it can be replaced
+        if (bs.hasLetter() && currentPlayer.
+                getCurrentMove().contains(bs.getLetter())){
+            currentPlayer.getTray().add(bs.getLetter());
+
+            //if the piece was already played it cannot be replaces
+        } else {
+
+            // move selected Letter to a list , player.currentMove
+            // put letter on board
+            Letter sL = currentPlayer.removeSelectedLetter();
+            board.placeLetter(bs, sL);
+
+            board.confirmBoard(dictionary);
+        }
 
 
-        //TODO
-        //remove from player disp
-        //notify if this is a playable word
-        //
-
-
-        currentPlayer.confirmWord(dictionary);
     }
 
     public void resetMove(){
@@ -111,20 +128,29 @@ public class Manager {
     boolean confirmWord(){
         //TODO
         //dictionary confirms word -if
+        // confirm board
+        if (board.confirmBoard(dictionary)){
 
-        //refill bag
-        //reset moves
-        currentPlayer.refillTray(bag);
-        currentPlayer.confirmWord(dictionary);
 
-        //confirm board
-        board.confirmBoard(dictionary);
+            int points = board.computeMove();
+            currentPlayer.addPoints(points);
+            System.out.println(" that was " + points + " pts");
 
-        //switch player
-        currentPlayer = scrabble.nextPlayer(currentPlayer);
+            currentPlayer.confirmWord();
 
+            //refill bag
+            //reset moves
+            currentPlayer.refillTray(bag);
+
+
+            //switch player
+            currentPlayer = scrabble.nextPlayer(currentPlayer);
+            display.setGameInfo(scrabble);
+        }
         return true;
     }
+
+
 
     /**
      *
@@ -147,6 +173,8 @@ public class Manager {
         PlayerDisplay playerDisplay = display.makePlayerDisplay(p1);
         p1.setPlayerDisplay(playerDisplay);
         display.setCurrentPlayerDisplay(p1);
+
+        display.setGameInfo(scrabble);
 
 
     }
