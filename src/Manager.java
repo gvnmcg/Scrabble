@@ -84,11 +84,10 @@ public class Manager {
      */
     public void selectBoardSpace(BoardSpace bs) {
 
-        //move selected Letter to a list , board.currentMove
+        // move selected Letter to a list , player.currentMove
         // put letter on board
         Letter sL = currentPlayer.removeSelectedLetter();
         board.placeLetter(bs, sL);
-
 
         currentPlayer.placeLetter(sL);
 
@@ -123,7 +122,6 @@ public class Manager {
 
         //switch player
         currentPlayer = scrabble.nextPlayer(currentPlayer);
-
 
         return true;
     }

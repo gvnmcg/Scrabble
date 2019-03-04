@@ -33,6 +33,6 @@ public class Letter {
 
     @Override
     public String toString() {
-        return c + ": " + score;
+        return c + "(" + score + ")";
     }
 }

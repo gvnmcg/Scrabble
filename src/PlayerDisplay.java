@@ -38,16 +38,6 @@ public class PlayerDisplay {
 
     }
 
-    void showLetterSelect(int i){
-
-        Group g = (Group)hBox.getChildren().get(i);
-
-        hBox.getChildren().remove(g);
-        hBox.getChildren().add(g);
-
-    }
-
-
     private void addHandlers(Group g, Letter l){
         g.addEventHandler(MouseEvent.MOUSE_CLICKED, controller.handleLetterSelection(l));
     }

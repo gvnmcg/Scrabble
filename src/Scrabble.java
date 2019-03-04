@@ -23,7 +23,9 @@ public class Scrabble {
     }
 
     Player startGame(){
-        return currentPlayer = players.get(new Random().nextInt(players.size()));
+        return currentPlayer =
+                players.get(
+                        new Random().nextInt(players.size()));
     }
 
     Player nextPlayer(Player player){

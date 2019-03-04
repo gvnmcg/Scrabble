@@ -53,12 +53,14 @@ public class Player {
     public Letter removeSelectedLetter() {
         trayList.remove(selectedLetter);
         playerDisplay.update(trayList);
+        currentMove.add(selectedLetter);
         return selectedLetter;
     }
 
     public void resetMove() {
 
         trayList.addAll(currentMove);
+        currentMove.clear();
         playerDisplay.update(trayList);
     }
 

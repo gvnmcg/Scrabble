@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class BoardDisplay {
 
@@ -64,50 +65,26 @@ public class BoardDisplay {
                 //add
                 rowHBow.getChildren().add(g);
 
-                //set handlers
-//                g.addEventHandler(MouseEvent.MOUSE_CLICKED ,
-//                        handleBlankSpace(board.getBoardSpace(i, j) , g));
-
                 g.addEventHandler(MouseEvent.MOUSE_CLICKED,
                         controller.handleSpaceClick(board.getBoardSpace(i, j)));
             }
         }
     }
 
-    void update(Board board){
-
-        BoardSpace bs = null;
-
-        for (int i = 0; i < 15; i++) {
-
-            for (int j = 0; j < 15; j++) {
-
-               bs = board.getBoardSpace(i, j);
-
-               if (bs.hasLetter()){
-
-                   Node n = hBoxes.get(j).getChildren().get(i);
-
-                   ((Group)n).getChildren().add(DisplayComponents.makeLetterGroup(bs.getLetter()));
-
-               }
-            }
-        }
-    }
-
-
-    public void update(HashMap<BoardSpace,Letter> letterMap) {
-
-        Letter l;
+    
+    public void removeMove(LinkedList<BoardSpace> move) {
         Group g;
-
-        for (BoardSpace bs : letterMap.keySet()){
-
-            l = letterMap.get(bs);
-            g = DisplayComponents.makeLetterGroup(l);
-            groupMap.put(bs, g);
-
-            g.getChildren().add(groupMap.get(bs));
+        
+        for (BoardSpace bs : move){
+            
+            g = groupMap.get(bs);
+            
+            
+            
+            g = DisplayComponents.makeBoardSpaceGroup(bs);
+            
+//            groupMap.remove(bs);
+//            groupMap.put(bs, DisplayComponents.makeBoardSpaceGroup(bs));
         }
 
     }
@@ -121,21 +98,11 @@ public class BoardDisplay {
 
     }
 
-    private EventHandler<MouseEvent> handleBlankSpace(BoardSpace bs, Group g) {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-
-
-            }
-        };
-    }
-
     public VBox getRoot() {
         return boardVBox;
     }
 
 
-
+    public void update(HashMap<BoardSpace,Letter> letterMap) {
+    }
 }

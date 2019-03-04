@@ -18,7 +18,7 @@ public class Board {
 
     //keep track of player move
 
-    private LinkedList<Letter> currentMove = new LinkedList<>();
+    private LinkedList<BoardSpace> currentMove = new LinkedList<>();
     private HashMap<Letter, BoardSpace> moveMap = new HashMap<>();
 
 
@@ -38,9 +38,16 @@ public class Board {
         //TODO
         System.out.println("place " + l + " on " + bs );
 
+        //add to this move - to remove later
+        currentMove.add(bs);
+
+        //add letter to data structure
         bs.setLetter(l);
+
+        //add pair to the data stucture - to remove and check???
         letterMap.put(bs, l);
 
+        //update dislay
         boardDisplay.addLetterGroup(bs, l);
     }
 
@@ -52,12 +59,12 @@ public class Board {
      */
     public void resetMove() {
 
-        for (Letter l : currentMove){
-
-            moveMap.get(l).setLetter(null);
-            moveMap.remove(l);
+        for (BoardSpace bs : currentMove){
+            bs.setLetter(null);
+            letterMap.remove(bs);
         }
-        boardDisplay.update(letterMap);
+        boardDisplay.removeMove(this);
+
     }
 
     public boolean confirmBoard(Dictionary dictionary) {
