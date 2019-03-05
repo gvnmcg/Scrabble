@@ -13,7 +13,8 @@ public class Dictionary {
     }
 
     boolean isWord(String word){
-        return trie.find(word);
+        return trie.findRec(word);
+//        return trie.find(word);
     }
 
 

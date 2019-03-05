@@ -56,18 +56,37 @@ public class Player {
     }
 
     /**
-     * remove form tray
-     * add to currentmove
-     * update display
-     * @return
+     *  move selected Letter to a list , player.currentMove
+     *  put letter on board
+     * @param bs selected board space
+     * @param board - to place on board
      */
-    public Letter removeSelectedLetter() {
+    public void placeLetter(BoardSpace bs, Board board) {
 
+        //must have letter
+        if (selectedLetter == null) return;
+
+        //can I replace this letter?
+        if (bs.hasLetter()){
+            if (currentMove.contains(bs.getLetter())){
+                trayList.add(bs.getLetter());
+                bs.setLetter(null);
+            } else {
+                return;
+            }
+        }
+
+        //add to move
         currentMove.add(selectedLetter);
+        //remove from tray
         trayList.remove(selectedLetter);
+        //update tray
         playerDisplay.showLetters(getTray());
 
-        return selectedLetter;
+        //put on board
+        board.placeLetter(bs, selectedLetter);
+        selectedLetter = null;
+
     }
 
     /**
@@ -84,7 +103,7 @@ public class Player {
     }
 
     /**
-     *
+     * refill tray from bag
      * @param bag
      */
     void refillTray(LetterBag bag){
@@ -96,6 +115,12 @@ public class Player {
     }
 
 
+    public void addPoints(int computedMove) {
+        System.out.println("add pl pts: " + computedMove);
+        score += computedMove;
+        scoreText.setText(String.valueOf(score));
+    }
+
     public void setPlayerDisplay(PlayerDisplay playerDisplay) {
         this.playerDisplay = playerDisplay;
     }
@@ -104,26 +129,16 @@ public class Player {
         return trayList;
     }
 
-    public Letter getSelectedLetter() {
-        return selectedLetter;
-    }
-
     public LinkedList<Letter> getCurrentMove() {
         return currentMove;
     }
 
-    public void addPoints(int computedMove) {
-        score += computedMove;
-        scoreText.setText(String.valueOf(score));
-    }
 
     public void confirmWord() {
-        //TODO
         currentMove.clear();
     }
 
     public String getName() {
-
         return name;
     }
 
@@ -134,4 +149,6 @@ public class Player {
     public Text getScoreText() {
         return scoreText;
     }
+
+
 }

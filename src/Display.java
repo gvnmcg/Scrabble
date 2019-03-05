@@ -134,6 +134,8 @@ public class Display {
         }
 
         layout.setLeft(vBox);
+
+        layout.setTop(scrabble.getText());
     }
 
     Scene getScene(){

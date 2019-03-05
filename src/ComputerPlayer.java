@@ -7,6 +7,11 @@ public class ComputerPlayer extends Player {
 
     }
 
+    void makeMove(){
+
+
+    }
+
 
 
     public void setBoard(Board board) {

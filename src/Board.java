@@ -59,13 +59,14 @@ public class Board {
      */
     public void resetMove() {
 
-
-
         for (BoardSpace bs : currentMove){
             bs.setLetter(null);
             letterMap.remove(bs);
         }
+
+
         boardDisplay.removeMove(currentMove);
+        currentMove.clear();
 
     }
 
@@ -128,14 +129,37 @@ public class Board {
         }
 
 
-        if (confirmed)System.out.println(" board good ");
-        else System.out.println(" not good ");
+        if (confirmed){
+            System.out.println(" board good ");
+
+        } else {
+            System.out.println(" not good ");
+        }
+
+
+
         return true;
 
     }
 
-    boolean isAvailable(int x, int y){
-        return spaces[x][y].hasLetter();
+    public int computeMove() {
+
+        int points = 0;
+        int mult = 1;
+        for (BoardSpace bs : currentMove){
+
+            points += (bs.getLetter().getScore()
+                    * bs.getLetterScoreMultiplier());
+
+            if (bs.getWordScoreMultiplier() > mult){
+                mult = bs.getWordScoreMultiplier();
+            }
+
+        }
+
+        currentMove.clear();
+
+        return points;
     }
 
     BoardSpace getBoardSpace(int x, int y){
@@ -222,21 +246,5 @@ public class Board {
     }
 
 
-    public int  computeMove() {
 
-        int points = 0;
-        int mult = 1;
-        for (BoardSpace bs : currentMove){
-
-            points += (bs.getLetter().getScore()
-                    * bs.getLetterScoreMultiplier());
-
-            if (bs.getWordScoreMultiplier() > mult){
-                mult = bs.getWordScoreMultiplier();
-            }
-
-        }
-
-        return points;
-    }
 }

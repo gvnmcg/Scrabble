@@ -19,15 +19,16 @@ public class Scrabble {
     Player nextPlayer(Player player){
 
 //        if (players.iterator().hasNext()){
-//            return currentPlayer = players.iterator().next();
+//            return players.iterator().next();
 //        } else {
-//            return currentPlayer = players.get(0);
+//            return players.get(0);
 //        }
 
         Player p = players.pop();
+        players.addLast(p);
 
-        players.addFirst(p);
-        return p;
+        System.out.println(" next : " + p.getName());
+        return players.getFirst();
     }
 
     public LinkedList<Player> getPlayers() {

@@ -16,8 +16,6 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 manager.selectLetter(l);
-
-                System.out.println(l);
             }
         };
     }
@@ -26,7 +24,6 @@ public class Controller {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
                 manager.selectBoardSpace(bs);
             }
         };
@@ -36,7 +33,6 @@ public class Controller {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("reset");
                 manager.resetMove();
             }
         };
@@ -47,8 +43,6 @@ public class Controller {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
-                System.out.println("confirm");
                 manager.confirmWord();
             }
         };

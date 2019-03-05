@@ -24,13 +24,12 @@ public class Manager {
 
     private Scrabble scrabble;
 
-    private Dictionary dictionary ;
+    private Dictionary dictionary;
 
     private boolean firstMove;
 
 
-
-    Manager(){
+    Manager() {
 
 
         //setup Game objects
@@ -42,16 +41,16 @@ public class Manager {
         dictionary = new Dictionary();
     }
 
-    void startGame(Scrabble scrabble){
+    void startGame(Scrabble scrabble) {
         this.scrabble = scrabble;
 
-        for (Player p : scrabble.getPlayers()){
+        for (Player p : scrabble.getPlayers()) {
             p.setTrayList(bag);
 
             //TODO
             System.out.println(p.getName() + " -- " + p.getTray());
 
-            if( p instanceof ComputerPlayer ){
+            if (p instanceof ComputerPlayer) {
                 ((ComputerPlayer) p).setBoard(board);
             }
         }
@@ -63,11 +62,12 @@ public class Manager {
 
 
     /**
-     *  Event Handler method:
+     * Event Handler method:
+     * <p>
+     * -assign players selected letter
+     * -move sL to end
+     * -move Sl Group to End
      *
-     *  -assign players selected letter
-     *  -move sL to end
-     *  -move Sl Group to End
      * @param l
      */
     public void selectLetter(Letter l) {
@@ -76,88 +76,75 @@ public class Manager {
     }
 
     /**
-     *
      * Event Handler:
-     *
+     * <p>
      * -remove selected letter from player tray
      * -addLetterGroup player display
-     *
+     * <p>
      * -place letter in board data structure
      * -place letter group in boardSpace Group
+     *
      * @param bs
      */
     public void selectBoardSpace(BoardSpace bs) {
 
         //if its the first move, it must be placed in the center
-        if (firstMove){
+        if (firstMove) {
             if (!board.getBoardSpace(
-                    board.sideLength/2,
-                    board.sideLength/2).equals(bs)){
+                    board.sideLength / 2,
+                    board.sideLength / 2).equals(bs)) {
                 scrabble.text.setText("please place in center space");
                 return;
             } else {
                 firstMove = false;
             }
         }
-
-        //if the piece was not confirmed, it can be replaced
-        if (bs.hasLetter() && currentPlayer.
-                getCurrentMove().contains(bs.getLetter())){
-            currentPlayer.getTray().add(bs.getLetter());
-
-            //if the piece was already played it cannot be replaces
-        } else {
-
-            // move selected Letter to a list , player.currentMove
-            // put letter on board
-            Letter sL = currentPlayer.removeSelectedLetter();
-            board.placeLetter(bs, sL);
-
-            board.confirmBoard(dictionary);
-        }
-
+        //just place the letter
+        currentPlayer.placeLetter(bs, board);
 
     }
 
-    public void resetMove(){
+    public void resetMove() {
 
-        //TODO
         currentPlayer.resetMove();
         board.resetMove();
     }
 
-    boolean confirmWord(){
-        //TODO
+    boolean confirmWord() {
         //dictionary confirms word -if
         // confirm board
-        if (board.confirmBoard(dictionary)){
 
+        if (currentPlayer.getCurrentMove().isEmpty()) return false;
 
-            int points = board.computeMove();
-            currentPlayer.addPoints(points);
-            System.out.println(" that was " + points + " pts");
+        if (board.confirmBoard(dictionary)) {
 
+            //add score
+            currentPlayer.addPoints(board.computeMove());
+
+            //reset moves
             currentPlayer.confirmWord();
 
             //refill bag
-            //reset moves
             currentPlayer.refillTray(bag);
-
 
             //switch player
             currentPlayer = scrabble.nextPlayer(currentPlayer);
-            display.setGameInfo(scrabble);
             display.setCurrentPlayerDisplay(currentPlayer);
+
+            if (currentPlayer instanceof ComputerPlayer){
+                ((ComputerPlayer) currentPlayer).makeMove();
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
+     * init display components in Game Objects
+     * init display components in display class
+     * <p>
+     * set first player diplay //TODO move
      *
-     *  init display components in Game Objects
-     *  init display components in display class
-     *
-     *  set first player diplay //TODO move
      * @param display
      */
     public void setDisplay(Display display) {
@@ -170,7 +157,7 @@ public class Manager {
         board.setBoardDisplay(display.makeBoardDisplay(board));
 
         //player displays
-        for (Player p : scrabble.getPlayers()){
+        for (Player p : scrabble.getPlayers()) {
             p.setPlayerDisplay(display.makePlayerDisplay(p));
         }
 
@@ -179,7 +166,6 @@ public class Manager {
         display.setGameInfo(scrabble);
 
     }
-
 
 
 }
