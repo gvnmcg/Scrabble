@@ -9,7 +9,7 @@ public class Player {
     private LinkedList<Letter> trayList = new LinkedList<>();
 
     private int score = 0;
-    private Text scoreText = new Text(String.valueOf(score));
+    private Text scoreText;
 
     private String name;
 
@@ -116,7 +116,6 @@ public class Player {
 
 
     public void addPoints(int computedMove) {
-        System.out.println("add pl pts: " + computedMove);
         score += computedMove;
         scoreText.setText(String.valueOf(score));
     }
@@ -150,5 +149,7 @@ public class Player {
         return scoreText;
     }
 
-
+    public void setScoreText() {
+        this.scoreText  = new Text(String.valueOf(score));
+    }
 }

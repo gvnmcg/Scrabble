@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.w3c.dom.css.Rect;
@@ -35,16 +36,23 @@ public class StartGame {
     private Scene getTitleScene(Manager manager, Display display) {
 
         //Title
-        StackPane pane = new StackPane();
-        pane.getChildren().add(new Text("Scrabble"));
-        pane.getChildren().add(new Text("by Gavin McGuire"));
+        GridPane pane = new GridPane();
+        pane.setAlignment(Pos.CENTER);
+
+        Text t = new Text("Scrabble");
+        t.setFont(Font.font(40));
+        pane.add(t, 0, 1);
+
+        t = new Text("by Gavin McGuire");
+        t.setFont(Font.font(20));
+        pane.add(t, 0, 2);
 
         //Play Button
         Button playButton = new Button("Play");
         playButton.setOnAction(event -> {
             window.setScene(getPlayerScene(manager, display));
         });
-        pane.getChildren().add(playButton);
+        pane.add(playButton, 0, 3);
 
         return titleScene = new Scene(pane, Display.WIDTH, Display.HEIGHT );
     }

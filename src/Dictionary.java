@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Timer;
 
@@ -19,6 +20,62 @@ public class Dictionary {
 
 
 
+    LinkedList<Letter> findWordFromTray(LinkedList<Letter> tray, LinkedList<BoardSpace> option){
+
+        //ok
+        //this things looks at the options:
+
+        String word = "";
+        for (BoardSpace bs : option){
+
+            if (bs.hasLetter()){
+                word += bs.getLetter().getChar();
+
+            } else {
+
+                if (bs.getLetterScoreMultiplier() > 1){
+
+                    Letter bigL = tray.getFirst();
+                    for (Letter l : tray){
+                        if (l.getScore() > bigL.getScore()){
+                            bigL = l;
+                        }
+                    }
+                    word += bigL.getChar();
+
+                } else {
+                    word += '*';
+                }
+            }
+        }
+
+        //prepare for trie method
+        LinkedList<Character> charTray = new LinkedList<>();
+        for (Letter l : tray){
+            charTray.add(l.getChar());
+        }
+
+        long time = System.currentTimeMillis();
+
+        word = trie.findPossibleWord("", word, charTray, null);
+
+        //reorganize to a list of letters
+        for (int i = 0; i < word.length(); i++) {
+
+            for (Letter l : tray){
+                if (word.charAt(i) == l.getChar()){
+                    tray.remove(l);
+                    tray.add(l);
+                    break;
+                }
+            }
+        }
+
+        return tray;
+    }
+
+
+
     void readIn(String filename){
 
         Scanner scanner = null;
@@ -30,16 +87,12 @@ public class Dictionary {
             e.printStackTrace();
         }
 
-        //start timer
-        long time = System.currentTimeMillis();
 
         //read every line into retrieval tree
         while (scanner.hasNext()){
             trie.insert(scanner.nextLine());
         }
 
-        //print timer
-        System.out.println("dictionary time: " + (System.currentTimeMillis() - time));
     }
 
     public static void main(String[] args)  {

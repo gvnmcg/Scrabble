@@ -12,7 +12,6 @@ public class Letter {
 
     Letter(String str){
 
-        System.out.println(str);
 
         Scanner sc = new Scanner(str);
 

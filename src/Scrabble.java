@@ -27,7 +27,6 @@ public class Scrabble {
         Player p = players.pop();
         players.addLast(p);
 
-        System.out.println(" next : " + p.getName());
         return players.getFirst();
     }
 

@@ -63,7 +63,12 @@ public class DisplayComponents {
 
         //letter
         Text t;
-        t = new Text(String.valueOf(l.getChar()));
+        if (l.getChar() == '*'){
+            t = new Text(" ");
+        } else {
+            t = new Text(String.valueOf(l.getChar()));
+        }
+
         t.setFont(Font.font(25));
         t.setX(scale * (.25));
         t.setY(scale * (.85));
@@ -97,6 +102,7 @@ public class DisplayComponents {
         t.setY(height * (.25));
         g.getChildren().add(t);
 
+        player.setScoreText();
         t= player.getScoreText();
         t.setX(width * (.25));
         t.setY(height * (.75));

@@ -12,16 +12,10 @@ public class Manager {
 
     private Player currentPlayer;
 
-    private Player p1;
-
-    private ComputerPlayer p2;
-
     private Controller controller;
 
     private Display display;
-
-    long time;
-
+    
     private Scrabble scrabble;
 
     private Dictionary dictionary;
@@ -46,9 +40,6 @@ public class Manager {
 
         for (Player p : scrabble.getPlayers()) {
             p.setTrayList(bag);
-
-            //TODO
-            System.out.println(p.getName() + " -- " + p.getTray());
 
             if (p instanceof ComputerPlayer) {
                 ((ComputerPlayer) p).setBoard(board);
@@ -114,12 +105,18 @@ public class Manager {
         //dictionary confirms word -if
         // confirm board
 
-        if (currentPlayer.getCurrentMove().isEmpty()) return false;
+        if (currentPlayer.getCurrentMove().isEmpty()) {
+            scrabble.setText("Please place letters " + currentPlayer.getName());
+            return false;
+        }
 
         if (board.confirmBoard(dictionary)) {
 
             //add score
-            currentPlayer.addPoints(board.computeMove());
+            int points = board.computeMove();
+            scrabble.setText(currentPlayer.getName() + " made "
+                    + points + "points");
+            currentPlayer.addPoints(points);
 
             //reset moves
             currentPlayer.confirmWord();
@@ -131,11 +128,12 @@ public class Manager {
             currentPlayer = scrabble.nextPlayer(currentPlayer);
             display.setCurrentPlayerDisplay(currentPlayer);
 
-            if (currentPlayer instanceof ComputerPlayer){
-                ((ComputerPlayer) currentPlayer).makeMove();
-            }
+//            if (currentPlayer instanceof ComputerPlayer){
+//                ((ComputerPlayer) currentPlayer).makeMove();
+//            }
             return true;
         }
+        resetMove();
         return false;
     }
 

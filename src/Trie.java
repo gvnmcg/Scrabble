@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * https://www.baeldung.com/trie-java
  */
@@ -36,10 +38,21 @@ public class Trie {
         return current.isEndOfWord();
     }
 
+    /**
+     * The method I wrote to recursively fill in blanks
+     * @param word
+     * @return
+     */
     boolean findRec(String word){
         return find(word, root);
     }
 
+    /**
+     * The method I wrote to recursively fill in blanks
+     * @param word
+     * @param node
+     * @return
+     */
     public boolean find(String word, TrieNode node){
 
         char ch = word.charAt(0);
@@ -68,6 +81,66 @@ public class Trie {
         }
 
         return find(word.substring(1), current);
+
+    }
+
+    /**
+     *
+     * This alghorithm searches the dictionary for leters to include in a word
+     * which already is given a few letters determined by multipliersa and previous words
+     *
+     * @param result - how we keep track of the word
+     * @param word - the word, including the blanks
+     * @param tray - the possible words we can use
+     * @param node - the next node for the next letter
+     * @return a word froun in our dictionary
+     */
+    String findPossibleWord(String result, String word, LinkedList<Character> tray, TrieNode node){
+
+        if (node == null) node = root;
+
+        char ch = word.charAt(0);
+        TrieNode current = node.getChildren().get(ch);
+
+        if ( current == null ){
+            return "";
+        }
+
+        //leaving lots of blanks
+        if (ch == '*'){
+            //look through possible next chars
+            for (char blankChar : node.getChildren().keySet()){
+
+                word = blankChar + word.substring(1);
+
+                //next chars that we can use
+                if (tray.contains(blankChar)){
+                    //we have used this letter
+                    tray.remove(blankChar);
+                    current = node.getChildren().get(blankChar);
+
+                    //it may return a completed word
+                    if( !((blankChar + findPossibleWord(result + blankChar,
+                            word.substring(1),tray, current)).equals(""))){
+
+                        return blankChar + findPossibleWord(result + blankChar,
+                                word.substring(1),tray, current);
+                    }
+                }
+            }
+            return "";
+        }
+
+        current = node.getChildren().get(ch);
+
+        if (current.isEndOfWord()){
+            return result;
+        }
+
+        return result + ch + findPossibleWord(result + ch,
+                word.substring(1),
+                tray,
+                current);
 
     }
 

@@ -35,9 +35,6 @@ public class Board {
 
     void placeLetter(BoardSpace bs, Letter l){
 
-        //TODO
-        System.out.println("place " + l + " on " + bs );
-
         //add to this move - to remove later
         currentMove.add(bs);
 
@@ -48,7 +45,8 @@ public class Board {
         letterMap.put(bs, l);
 
         //showLetters dislay
-        boardDisplay.addLetterGroup(bs, l);
+        if (boardDisplay != null) boardDisplay.addLetterGroup(bs, l);
+
     }
 
     /**
@@ -88,11 +86,9 @@ public class Board {
                 } else {
 
                     if (!word.equals("") && word.length() > 1){
-                        System.out.println("word detected -- " + word);
 
                         //we can look it up
                         if (!dictionary.isWord(word)){
-                            System.out.println(" is in dictionary");
                             confirmed = false;
                         }
                     }
@@ -114,10 +110,8 @@ public class Board {
                 } else {
 
                     if (!word.equals("") && word.length() > 1){
-                        System.out.println("word detected (down) -- " + word);
 
                         if (!dictionary.isWord(word)){
-                            System.out.println(" is in dictionary");
 
                             confirmed = false;
                         }
@@ -127,16 +121,6 @@ public class Board {
             }
             word = "";
         }
-
-
-        if (confirmed){
-            System.out.println(" board good ");
-
-        } else {
-            System.out.println(" not good ");
-        }
-
-
 
         return true;
 
