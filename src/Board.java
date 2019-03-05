@@ -26,7 +26,7 @@ public class Board {
 
     BoardDisplay boardDisplay;
 
-    Board(Letter startLetter){
+    Board(){
 
         readIn("src/txt/scrabble_board.txt");
 
@@ -218,7 +218,7 @@ public class Board {
     public static void main(String[] args) {
 
         //Make new board and read in text file
-        Board board = new Board(null);
+        Board board = new Board();
     }
 
 

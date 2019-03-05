@@ -35,7 +35,7 @@ public class Manager {
 
         //setup Game objects
         bag = new LetterBag();
-        board = new Board(bag.draw());
+        board = new Board();
 
         this.controller = new Controller(this);
 
@@ -44,24 +44,18 @@ public class Manager {
 
     void startGame(Scrabble scrabble){
         this.scrabble = scrabble;
-        //game
-        LinkedList<Player> players = new LinkedList<>();
-        players.add(p2 = new ComputerPlayer(" cpu"));
-        players.add(p1 = new Player("p1"));
 
-        scrabble = new Scrabble();
-
-        for (Player p : players){
+        for (Player p : scrabble.getPlayers()){
             p.setTrayList(bag);
-            scrabble.addPlayer(p);
 
+            //TODO
             System.out.println(p.getName() + " -- " + p.getTray());
 
-            if( p instanceof ComputerPlayer){
+            if( p instanceof ComputerPlayer ){
                 ((ComputerPlayer) p).setBoard(board);
             }
         }
-        currentPlayer = players.get(0);
+        currentPlayer = scrabble.getPlayers().peek();
 
         firstMove = true;
 
@@ -158,8 +152,6 @@ public class Manager {
         return true;
     }
 
-
-
     /**
      *
      *  init display components in Game Objects
@@ -170,26 +162,21 @@ public class Manager {
      */
     public void setDisplay(Display display) {
         this.display = display;
+
+        //so the display can be interactive
         display.setController(controller);
 
         //board display
         board.setBoardDisplay(display.makeBoardDisplay(board));
 
         //player displays
-        //TODO make multiple players, for now just show p1
-
         for (Player p : scrabble.getPlayers()){
-            PlayerDisplay playerDisplay = display.makePlayerDisplay(p);
-            p.setPlayerDisplay(playerDisplay);
-            display.setCurrentPlayerDisplay(p);
+            p.setPlayerDisplay(display.makePlayerDisplay(p));
         }
 
-//        PlayerDisplay playerDisplay = display.makePlayerDisplay(p1);
-//        p1.setPlayerDisplay(playerDisplay);
-//        display.setCurrentPlayerDisplay(p1);
+        display.setCurrentPlayerDisplay(currentPlayer);
 
         display.setGameInfo(scrabble);
-
 
     }
 

@@ -4,10 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 import java.util.HashMap;
 
@@ -24,7 +21,7 @@ public class Display {
 
     //settings
 
-    final static int WIDTH = 700;
+    final static int WIDTH = 1000;
     final static int HEIGHT = 700;
 
     int LEFT_MARGIN = 10;
@@ -45,7 +42,6 @@ public class Display {
 
         components = new DisplayComponents(scale);
 
-        //add reset and comfirm buttons
     }
 
     public void setController(Controller controller) {
@@ -131,22 +127,13 @@ public class Display {
 
     public void setGameInfo(Scrabble scrabble) {
 
-//        layout.setTop(scrabble.getText());
-
-        VBox leftBox = new VBox();
-
-        HBox hBox;
+        VBox vBox = new VBox();
 
         for (Player p : scrabble.getPlayers()){
-
-            hBox = new HBox();
-            hBox.getChildren().add(new Text(p.getName()));
-            hBox.getChildren().add(p.getScoreText());
-
-            leftBox.getChildren().add(hBox);
+            vBox.getChildren().add(DisplayComponents.makePlayerGroup(p));
         }
 
-        layout.setLeft(leftBox);
+        layout.setLeft(vBox);
     }
 
     Scene getScene(){

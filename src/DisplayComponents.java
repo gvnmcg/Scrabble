@@ -78,4 +78,30 @@ public class DisplayComponents {
         return g;
 
     }
+
+    static Group makePlayerGroup(Player player){
+
+        Group g = new Group();
+
+        int width = 70;
+        int height = 100;
+
+        Rectangle r = new Rectangle(width, height);
+        r.setFill(Color.LIGHTBLUE);
+        r.setStroke(Color.BLUE);
+        g.getChildren().add(r);
+
+        Text t;
+        t= new Text(player.getName());
+        t.setX(width * (.25));
+        t.setY(height * (.25));
+        g.getChildren().add(t);
+
+        t= player.getScoreText();
+        t.setX(width * (.25));
+        t.setY(height * (.75));
+        g.getChildren().add(t);
+
+        return g;
+    }
 }

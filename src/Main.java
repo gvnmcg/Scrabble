@@ -16,17 +16,12 @@ public class Main extends Application {
 
         Scrabble scrabble = new Scrabble();
         Display display = new Display();
+        Manager manager = new Manager();
 
-        StartGame startGame = new StartGame(scrabble, primaryStage, display.getScene());
+        StartGame startGame = new StartGame(
+                scrabble, manager, primaryStage, display);
 
-        Manager manager = new Manager(scrabble);
-        manager.setDisplay(display);
-
-//        primaryStage.setScene(new Scene(display.getLayout(),
-//                Display.WIDTH, Display.HEIGHT));
         primaryStage.show();
-
-        manager.startGame();
 
     }
 

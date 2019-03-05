@@ -7,19 +7,14 @@ import java.util.Random;
 
 public class Scrabble {
 
-    Player currentPlayer;
-    int index;
     LinkedList<Player> players = new LinkedList<>();
 
     //Display
     Text text = new Text();
 
+    VBox playerVbox;
 
-    Player startGame(){
-        return currentPlayer =
-                players.get(
-                        new Random().nextInt(players.size()));
-    }
+    //----------
 
     Player nextPlayer(Player player){
 
@@ -35,13 +30,6 @@ public class Scrabble {
         return p;
     }
 
-    HBox topBox(){
-        HBox hBox = new HBox();
-
-        hBox.getChildren().add(text);
-        return hBox;
-    }
-
     public LinkedList<Player> getPlayers() {
         return players;
     }
@@ -50,7 +38,12 @@ public class Scrabble {
         return text;
     }
 
+    public void setText(String str) {
+        this.text.setText(str);
+    }
+
     public void addPlayer(Player player) {
         players.add(player);
     }
+
 }
