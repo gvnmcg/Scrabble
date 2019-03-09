@@ -120,6 +120,14 @@ public class Player {
         scoreText.setText(String.valueOf(score));
     }
 
+    public void exchange(LetterBag bag) {
+
+        bag.takeExchange(trayList);
+        trayList.clear();
+        setTrayList(bag);
+        playerDisplay.showLetters(trayList);
+    }
+
     public void setPlayerDisplay(PlayerDisplay playerDisplay) {
         this.playerDisplay = playerDisplay;
     }
@@ -152,4 +160,6 @@ public class Player {
     public void setScoreText() {
         this.scoreText  = new Text(String.valueOf(score));
     }
+
+
 }

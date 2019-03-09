@@ -59,6 +59,9 @@ public class Display {
         //confirm button
         rightButtonVbox.getChildren().add(confirmButton(controller));
 
+        //exchange button
+        rightButtonVbox.getChildren().add(exchangeButton(controller));
+
         layout.setRight(rightButtonVbox);
     }
 
@@ -120,6 +123,22 @@ public class Display {
                 "    -fx-padding: 5;");
         return confirmButton;
     }
+
+    Button exchangeButton(Controller controller){
+
+        Button exchangeButton = new Button("Exchange");
+        exchangeButton.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                controller.handleExchange());
+
+        exchangeButton.setStyle("-fx-text-fill: #006464;\n" +
+                "    -fx-background-color: #DFB951;\n" +
+                "    -fx-border-radius: 20;\n" +
+                "    -fx-background-radius: 20;\n" +
+                "    -fx-padding: 5;");
+        return exchangeButton;
+    }
+
+
 
     public BorderPane getLayout() {
         return layout;

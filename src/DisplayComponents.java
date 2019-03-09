@@ -76,7 +76,7 @@ public class DisplayComponents {
 
         //score
         t = new Text(String.valueOf(l.getScore()));
-        t.setX(scale * (.65));
+        t.setX(scale * (.55));
         t.setY(scale * (.35));
         g.getChildren().add(t);
 

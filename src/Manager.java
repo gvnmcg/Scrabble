@@ -137,6 +137,11 @@ public class Manager {
         return false;
     }
 
+    void exchange(){
+
+        currentPlayer.exchange(bag);
+    }
+
     /**
      * init display components in Game Objects
      * init display components in display class

@@ -98,4 +98,9 @@ public class LetterBag {
     public boolean isEmpty() {
         return letters.isEmpty();
     }
+
+    public void takeExchange(LinkedList<Letter> trayList) {
+
+        letters.addAll(trayList);
+    }
 }

@@ -1,30 +1,25 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.w3c.dom.css.Rect;
-
-import java.util.LinkedList;
 
 public class StartGame {
 
-    Stage window;
+    private Stage window;
 
-    Scene titleScene;
+    private Scene titleScene;
 
-    Scene playerScene;
+    private Scene playerScene;
 
-    Scene gameScene;
+    private Scene gameScene;
 
-    Scrabble scrabble;
+    private Scrabble scrabble;
 
     StartGame(Scrabble scrabble, Manager manager,  Stage window, Display display ){
         this.scrabble = scrabble;
@@ -33,11 +28,18 @@ public class StartGame {
         window.setScene(titleScene = getTitleScene(manager, display));
     }
 
+    /**
+     * Make the first scene in the program
+     * @param manager
+     * @param display
+     * @return
+     */
     private Scene getTitleScene(Manager manager, Display display) {
 
-        //Title
         GridPane pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
+
+        //Title
 
         Text t = new Text("Scrabble");
         t.setFont(Font.font(40));
@@ -82,16 +84,35 @@ public class StartGame {
 
 
         //makes a new player fomr text field
-        Button enterPlayer = new Button("enter player");
-        enterPlayer.setOnAction(event -> {
 
-            Player p = new Player(textField.getText());
-            textField.clear();
+        VBox playerVBox = new VBox();
+        borderPane.setLeft(playerVBox);
+
+        Button enterPlayer = new Button("enter player");
+
+        CheckBox cpuCheckBox = new CheckBox();
+        grid.add(new Text("cpu?"), 1, 2);
+        grid.add(cpuCheckBox, 2, 2);
+
+        enterPlayer.setOnAction(event -> {
+            Player p;
+            if (cpuCheckBox.isSelected()){
+                p = new ComputerPlayer(textField.getText());
+                textField.clear();
+            } else {
+                p = new Player(textField.getText());
+                textField.clear();
+            }
 
             //add to Game
             scrabble.addPlayer(p);
+
+            //add to vBox
+            playerVBox.getChildren().add(DisplayComponents.makePlayerGroup(p));
         });
         grid.add(enterPlayer, 0, 3);
+
+
 
         //exit scene and start gameplay
         Button playButton = new Button("Play");

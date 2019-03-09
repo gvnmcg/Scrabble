@@ -47,4 +47,14 @@ public class Controller {
             }
         };
     }
+
+    EventHandler<MouseEvent> handleExchange() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                manager.exchange();
+            }
+        };
+    }
+
 }

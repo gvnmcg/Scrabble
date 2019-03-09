@@ -68,13 +68,17 @@ public class Board {
 
     }
 
+    /**
+     * check every "line" of letters down and across
+     * @param dictionary
+     * @return
+     */
     public boolean confirmBoard(Dictionary dictionary) {
 
         boolean confirmed = true;
 
         String word = "";
-        //check every "line" of letters down and across
-        //every row
+
         // horizontal check
         for (BoardSpace[] row : spaces){
             for (BoardSpace bs : row){
@@ -85,7 +89,7 @@ public class Board {
                     word += bs.getLetter().getChar();
                 } else {
 
-                    if (!word.equals("") && word.length() > 1){
+                    if (word.length() > 1){
 
                         //we can look it up
                         if (!dictionary.isWord(word)){
@@ -122,27 +126,105 @@ public class Board {
             word = "";
         }
 
-        return true;
+        return confirmed;
 
     }
+
+
 
     public int computeMove() {
 
         int points = 0;
-        int mult = 1;
-        for (BoardSpace bs : currentMove){
 
-            points += (bs.getLetter().getScore()
-                    * bs.getLetterScoreMultiplier());
+        boolean inCurrent = false;
 
-            if (bs.getWordScoreMultiplier() > mult){
-                mult = bs.getWordScoreMultiplier();
+        LinkedList<BoardSpace> playedWord = new LinkedList<>();
+
+        // horizontal check
+        for (BoardSpace[] row : spaces) {
+            for (BoardSpace bs : row) {
+
+
+                //if we hit a letter
+                if (bs.hasLetter()){
+
+                    //if the letter we hit has just been placed
+                    if (currentMove.contains(bs)){
+                        inCurrent = true;
+                    }
+
+                    //regardless, add it to the word detected
+                    playedWord.add(bs);
+
+                    //if we end a word
+                } else if (!bs.hasLetter() && !playedWord.isEmpty()){
+
+                    //add the word was just played
+                    if (inCurrent){
+
+                        //add to the score returned
+                        points = 0;
+                        int mult = 1;
+                        for (BoardSpace bsL : playedWord){
+
+                            points += (bsL.getLetter().getScore()
+                                    * bsL.getLetterScoreMultiplier());
+
+                            if (bsL.getWordScoreMultiplier() > mult){
+                                mult = bsL.getWordScoreMultiplier();
+                            }
+                        }
+
+                    }
+                    playedWord.clear();
+                }
             }
+        }
 
+        //vertical check
+        BoardSpace bs;
+        for (int i = 0; i < sideLength; i++) {
+            for (int j = 0; j < sideLength; j++) {
+
+                bs = spaces[j][i];
+
+                //if we hit a letter
+                if (bs.hasLetter()){
+
+                    //if the letter we hit has just been placed
+                    if (currentMove.contains(bs)){
+                        inCurrent = true;
+                    }
+
+                    //regardless, add it to the word detected
+                    playedWord.add(bs);
+
+                    //if we end a word
+                } else if (!bs.hasLetter() && !playedWord.isEmpty()){
+
+                    //add the word was just played
+                    if (inCurrent){
+
+                        //add to the score returned
+                        points = 0;
+                        int mult = 1;
+                        for (BoardSpace bsL : playedWord){
+
+                            points += (bsL.getLetter().getScore()
+                                    * bsL.getLetterScoreMultiplier());
+
+                            if (bsL.getWordScoreMultiplier() > mult){
+                                mult = bsL.getWordScoreMultiplier();
+                            }
+                        }
+
+                    }
+                    playedWord.clear();
+                }
+            }
         }
 
         currentMove.clear();
-
         return points;
     }
 
