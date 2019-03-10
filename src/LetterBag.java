@@ -63,7 +63,13 @@ public class LetterBag {
     Letter draw(){
 
         Random random = new Random();
-        return letters.remove(random.nextInt(letters.size()));
+
+        if (letters.isEmpty()){
+            return letters.remove(random.nextInt(letters.size()));
+        } else {
+            return null;
+        }
+
     }
 
     /**

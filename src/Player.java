@@ -108,8 +108,12 @@ public class Player {
      */
     void refillTray(LetterBag bag){
 
+        Letter l;
         while (trayList.size() < 7 && !bag.isEmpty()){
-            trayList.add(bag.draw());
+            l = bag.draw();
+
+            if (l == null) trayList.add(l);
+
         }
         playerDisplay.showLetters(getTray());
     }

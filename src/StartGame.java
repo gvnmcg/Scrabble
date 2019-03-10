@@ -13,19 +13,13 @@ public class StartGame {
 
     private Stage window;
 
-    private Scene titleScene;
-
-    private Scene playerScene;
-
-    private Scene gameScene;
-
     private Scrabble scrabble;
 
-    StartGame(Scrabble scrabble, Manager manager,  Stage window, Display display ){
+    StartGame(Scrabble scrabble, Manager manager, Stage window, Display display ){
         this.scrabble = scrabble;
         this.window = window;
 
-        window.setScene(titleScene = getTitleScene(manager, display));
+        window.setScene(getTitleScene(manager, display));
     }
 
     /**
@@ -56,7 +50,7 @@ public class StartGame {
         });
         pane.add(playButton, 0, 3);
 
-        return titleScene = new Scene(pane, Display.WIDTH, Display.HEIGHT );
+        return new Scene(pane, Display.WIDTH, Display.HEIGHT );
     }
 
     public Scene getPlayerScene(Manager manager, Display display) {
@@ -136,7 +130,7 @@ public class StartGame {
         grid.add(playButton, 0, 4);
 
 
-        return playerScene = new Scene(borderPane, Display.WIDTH, Display.HEIGHT );
+        return new Scene(borderPane, Display.WIDTH, Display.HEIGHT );
     }
 
 

@@ -80,6 +80,10 @@ public class Trie {
             return true;
         }
 
+        if (word.length() == 1){
+            return find(word, current);
+        }
+
         return find(word.substring(1), current);
 
     }

@@ -89,7 +89,7 @@ public class Board {
                     word += bs.getLetter().getChar();
                 } else {
 
-                    if (word.length() > 1){
+                    if (!word.equals("") && word.length() > 1){
 
                         //we can look it up
                         if (!dictionary.isWord(word)){
@@ -113,7 +113,7 @@ public class Board {
                     word += bs.getLetter().getChar();
                 } else {
 
-                    if (!word.equals("") && word.length() > 1){
+                    if (!word.equals("") && word.length() > 1 ){
 
                         if (!dictionary.isWord(word)){
 
@@ -157,23 +157,14 @@ public class Board {
                     playedWord.add(bs);
 
                     //if we end a word
-                } else if (!bs.hasLetter() && !playedWord.isEmpty()){
+                } else if (!bs.hasLetter()
+                        && !playedWord.isEmpty()
+                        && playedWord.size() > 1){
 
-                    //add the word was just played
+                    //add the word that was just played
                     if (inCurrent){
 
-                        //add to the score returned
-                        points = 0;
-                        int mult = 1;
-                        for (BoardSpace bsL : playedWord){
-
-                            points += (bsL.getLetter().getScore()
-                                    * bsL.getLetterScoreMultiplier());
-
-                            if (bsL.getWordScoreMultiplier() > mult){
-                                mult = bsL.getWordScoreMultiplier();
-                            }
-                        }
+                        points += computeWord(playedWord);
 
                     }
                     playedWord.clear();
@@ -200,23 +191,14 @@ public class Board {
                     playedWord.add(bs);
 
                     //if we end a word
-                } else if (!bs.hasLetter() && !playedWord.isEmpty()){
+                } else if (!bs.hasLetter()
+                        && !playedWord.isEmpty()
+                        && playedWord.size() > 1){
 
                     //add the word was just played
                     if (inCurrent){
 
-                        //add to the score returned
-                        points = 0;
-                        int mult = 1;
-                        for (BoardSpace bsL : playedWord){
-
-                            points += (bsL.getLetter().getScore()
-                                    * bsL.getLetterScoreMultiplier());
-
-                            if (bsL.getWordScoreMultiplier() > mult){
-                                mult = bsL.getWordScoreMultiplier();
-                            }
-                        }
+                        points += computeWord(playedWord);
 
                     }
                     playedWord.clear();
@@ -226,6 +208,26 @@ public class Board {
 
         currentMove.clear();
         return points;
+    }
+
+    private int computeWord(LinkedList<BoardSpace> playedWord) {
+
+        int points = 0;
+        //add to the score returned
+        for (BoardSpace bsL : playedWord){
+
+            points += (bsL.getLetter().getScore()
+                    * bsL.getLetterScoreMultiplier());
+
+            points *= bsL.getWordScoreMultiplier();
+        }
+
+        System.out.println("pnts : " + points);
+
+        System.out.println("word : " + playedWord);
+
+        return points;
+
     }
 
     BoardSpace getBoardSpace(int x, int y){

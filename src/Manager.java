@@ -123,15 +123,20 @@ public class Manager {
 
             //refill bag
             currentPlayer.refillTray(bag);
-
-            //switch player
-            currentPlayer = scrabble.nextPlayer(currentPlayer);
-            display.setCurrentPlayerDisplay(currentPlayer);
+            if (bag.isEmpty()){
+                scrabble.setText("Game Over " + currentPlayer.getName() + " Wins!");
+            } else {
+                //switch player
+                currentPlayer = scrabble.nextPlayer(currentPlayer);
+                display.setCurrentPlayerDisplay(currentPlayer);
 
 //            if (currentPlayer instanceof ComputerPlayer){
 //                ((ComputerPlayer) currentPlayer).makeMove();
 //            }
-            return true;
+                return true;
+            }
+
+
         }
         resetMove();
         return false;
