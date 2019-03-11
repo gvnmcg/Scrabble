@@ -121,6 +121,7 @@ public class StartGame {
             //start game logic
             manager.startGame(scrabble);
 
+
             //give players display components
             manager.setDisplay(display);
 
