@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Scrabble Game Board
+ */
 public class Board {
 
-    int sideLength;
+    private int sideLength;
 
     private BoardSpace[][] spaces;
 
@@ -24,7 +27,7 @@ public class Board {
 
     //Display
 
-    BoardDisplay boardDisplay;
+    private BoardDisplay boardDisplay;
 
     Board(){
 

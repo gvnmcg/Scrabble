@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Holds all Letter Objects
+ */
 public class LetterBag {
 
     LinkedList<Letter> letters = new LinkedList<>();

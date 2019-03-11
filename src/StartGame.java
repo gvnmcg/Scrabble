@@ -9,6 +9,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Manages Opening Game scenes
+ */
 public class StartGame {
 
     private Stage window;

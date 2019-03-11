@@ -2,6 +2,7 @@ import java.util.LinkedList;
 
 /**
  * https://www.baeldung.com/trie-java
+ * Data structure used to
  */
 public class Trie {
 

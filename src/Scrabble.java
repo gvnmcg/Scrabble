@@ -5,6 +5,9 @@ import javafx.scene.text.Text;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ * Manages Players and Game Progression
+ */
 public class Scrabble {
 
     LinkedList<Player> players = new LinkedList<>();

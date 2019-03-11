@@ -1,6 +1,9 @@
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Handles user input
+ */
 public class Controller {
 
     private Manager manager;

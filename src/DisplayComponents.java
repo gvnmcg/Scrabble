@@ -4,6 +4,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * creates visual tokens for the game
+ */
 public class DisplayComponents {
 
     static double scale;

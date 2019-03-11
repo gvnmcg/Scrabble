@@ -8,6 +8,9 @@ import javafx.scene.layout.VBox;
 
 import java.util.HashMap;
 
+/**
+ * Manages Display and Display Components
+ */
 public class Display {
 
     //Display helper objects

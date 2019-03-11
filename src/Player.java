@@ -4,6 +4,9 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * Represents the Player of the game
+ */
 public class Player {
 
     private LinkedList<Letter> trayList = new LinkedList<>();

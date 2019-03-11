@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Letter Tile GAme Object
+ */
 public class Letter {
 
     private char c;

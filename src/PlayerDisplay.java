@@ -5,6 +5,9 @@ import javafx.scene.layout.HBox;
 
 import java.util.LinkedList;
 
+/**
+ * Displays player components
+ */
 public class PlayerDisplay {
 
     HBox hBox;

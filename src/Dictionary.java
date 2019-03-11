@@ -4,6 +4,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Timer;
 
+/**
+ * Confirms words used in the game
+ */
 public class Dictionary {
 
     private Trie trie = new Trie();

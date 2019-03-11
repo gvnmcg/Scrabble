@@ -1,8 +1,11 @@
+/**
+ * Scrabble Board piece
+ */
 public class BoardSpace {
 
     private Letter letter;
 
-    //letter score multiplier
+    //letter score multipliers
     private int lsm;
     private int wsm;
 
