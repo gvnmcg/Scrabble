@@ -82,8 +82,8 @@ public class Manager {
         //if its the first move, it must be placed in the center
         if (firstMove) {
             if (!board.getBoardSpace(
-                    board.sideLength / 2,
-                    board.sideLength / 2).equals(bs)) {
+                    board.getSideLength() / 2,
+                    board.getSideLength() / 2).equals(bs)) {
                 scrabble.text.setText("please place in center space");
                 return;
             } else {

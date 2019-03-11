@@ -30,7 +30,7 @@ public class Display {
     int LEFT_MARGIN = 10;
     int TOP_MARGIN = 20;
 
-    int scale = 30;
+    private int scale = 30;
 
 
     //display Game Objects

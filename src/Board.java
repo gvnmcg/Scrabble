@@ -13,17 +13,11 @@ public class Board {
 
     private BoardSpace[][] spaces;
 
-    private ArrayList<BoardSpace> boardSpaceList = new ArrayList<>();
-
     private HashMap<BoardSpace, Letter> letterMap = new HashMap<>();
-
-
 
     //keep track of player move
 
     private LinkedList<BoardSpace> currentMove = new LinkedList<>();
-    private HashMap<Letter, BoardSpace> moveMap = new HashMap<>();
-
 
     //Display
 
@@ -316,6 +310,7 @@ public class Board {
         Board board = new Board();
     }
 
-
-
+    public int getSideLength() {
+        return sideLength;
+    }
 }
